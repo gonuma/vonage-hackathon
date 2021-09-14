@@ -1,0 +1,10 @@
+.App {
+  display: flex;
+  /* background-color: black; */
+}
+
+.videoContainer {
+  flex: 1;
+  margin-left: 1vw;
+  /* background-color: lightblue; */
+}

@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import Video from "./features/video/Video";
 import { Workspace } from "./features/workspace/Workspace";
 import { fetchAllFiles } from "./slices/filesSlice";
+import "./app.css";
 
 function App(props) {
   const { credentials } = props;

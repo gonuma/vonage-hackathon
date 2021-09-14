@@ -80,13 +80,12 @@ export default class App extends React.Component {
     const { error, connection, publishVideo } = this.state;
     return (
       <div>
-        {console.log(token)}
-        <div id="sessionStatus">Session Status: {connection}</div>
+        {/* <div id="sessionStatus">Session Status: {connection}</div>
         {error ? (
           <div className="error">
             <strong>Error:</strong> {error}
-          </div>
-        ) : null}
+          </div> */}
+        {/* ) : null} */}
         <OTSession
           apiKey={apiKey}
           sessionId={sessionId}
