@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-// import { store } from './app/store';
+import { store } from "./app/store";
 import { Provider } from "react-redux";
 // import * as serviceWorker from './serviceWorker';
 import "@opentok/client";
@@ -10,9 +10,9 @@ import { SERVER_BASE_URL, API_KEY, SESSION_ID, TOKEN } from "./config";
 function renderApp(credentials) {
   ReactDOM.render(
     <React.StrictMode>
-      {/* <Provider store={store}> */}
-      <App credentials={credentials} />
-      {/* </Provider> */}
+      <Provider store={store}>
+        <App credentials={credentials} />
+      </Provider>
     </React.StrictMode>,
     document.getElementById("root")
   );

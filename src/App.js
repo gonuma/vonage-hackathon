@@ -1,14 +1,20 @@
-import React from "react";
-import { Counter } from "./features/counter/Counter";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import Video from "./features/video/Video";
-import "./App.css";
+import { Workspace } from "./features/workspace/Workspace";
+import { fetchAllFiles } from "./slices/filesSlice";
 
 function App(props) {
   const { credentials } = props;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchAllFiles());
+  }, []);
 
   return (
     <div className="App">
-      <Counter />
+      <Workspace />
       <Video credentials={credentials} />
     </div>
   );
