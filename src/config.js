@@ -1,4 +1,4 @@
-const SERVER_BASE_URL = "http://localhost:9000";
+const SERVER_BASE_URL = "http://localhost:3000";
 
 const API_KEY = "47334051";
 const SESSION_ID =

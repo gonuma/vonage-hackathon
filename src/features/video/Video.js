@@ -2,108 +2,116 @@ import React from "react";
 import { useState } from "react";
 import { OTSession, OTPublisher, OTStreams, OTSubscriber } from "opentok-react";
 
-export default function Video(props) {
-  const { credentials } = props;
+export default class App extends React.Component {
+  constructor(props) {
+    super(props);
 
-  const { apiKey, sessionId, token } = credentials;
+    this.state = {
+      error: null,
+      connection: "Connecting",
+      publishVideo: true,
+    };
 
-  const [error, setError] = useState(null);
-  const [connection, setConnection] = useState("Connecting");
-  const [publishVideo, setPublishVideo] = useState(true);
+    this.sessionEventHandlers = {
+      sessionConnected: () => {
+        this.setState({ connection: "Connected" });
+      },
+      sessionDisconnected: () => {
+        this.setState({ connection: "Disconnected" });
+      },
+      sessionReconnected: () => {
+        this.setState({ connection: "Reconnected" });
+      },
+      sessionReconnecting: () => {
+        this.setState({ connection: "Reconnecting" });
+      },
+    };
 
-  const sessionEventHandler = {
-    sessionConnected: () => {
-      setConnection("Connected");
-    },
-    sessionDisconnected: () => {
-      setConnection("Disconnected");
-    },
-    sessionReconnected: () => {
-      setConnection("Reconnected");
-    },
-    sessionReconnecting: () => {
-      setConnection("Reconnecting");
-    },
+    this.publisherEventHandlers = {
+      accessDenied: () => {
+        console.log("User denied access to media source");
+      },
+      streamCreated: () => {
+        console.log("Publisher stream created");
+      },
+      streamDestroyed: ({ reason }) => {
+        console.log(`Publisher stream destroyed because: ${reason}`);
+      },
+    };
+
+    this.subscriberEventHandlers = {
+      videoEnabled: () => {
+        console.log("Subscriber video enabled");
+      },
+      videoDisabled: () => {
+        console.log("Subscriber video disabled");
+      },
+    };
+  }
+
+  onSessionError = (error) => {
+    this.setState([error]);
   };
 
-  const publisherEventHandlers = {
-    accessDenied: () => {
-      console.log("User denied access to media source");
-    },
-    streamCreated: () => {
-      console.log("Publisher stream created");
-    },
-    streamDestroyed: ({ reason }) => {
-      console.log(`Publisher stream destroyed because: ${reason}`);
-    },
-  };
-
-  const subscriberEventHandlers = {
-    videoEnabled: () => {
-      console.log("Subscriber video enabled");
-    },
-    videoDisabled: () => {
-      console.log("Subscriber video disabled");
-    },
-  };
-
-  const onSessionError = (error) => {
-    setError(error);
-  };
-
-  const onPublish = () => {
+  onPublish = () => {
     console.log("Publish Success");
   };
 
-  const onPublishError = (error) => {
-    setError(error);
+  onPublishError = (error) => {
+    this.setState([error]);
   };
 
-  const onSubscribe = () => {
+  onSubscribe = () => {
     console.log("Subscribe Success");
   };
 
-  const onSubscribeError = (error) => {
-    setError(error);
+  onSubscribeError = (error) => {
+    this.setState([error]);
   };
 
-  const toggleVideo = () => {
-    setPublishVideo(!publishVideo);
+  toggleVideo = () => {
+    this.setState((state) => ({
+      publishVideo: !state.publishVideo,
+    }));
   };
 
-  return (
-    <div>
-      <div id="sessionStatus">Session Status: {connection}</div>
-      {error ? (
-        <div className="error">
-          <strong>Error:</strong> {error}
-        </div>
-      ) : null}
-      <OTSession
-        apiKey={apiKey}
-        sessionId={sessionId}
-        token={token}
-        onError={this.onSessionError}
-        eventHandlers={this.sessionEventHandlers}
-      >
-        <button id="videoButton" onClick={this.toggleVideo}>
-          {publishVideo ? "Disable" : "Enable"} Video
-        </button>
-        <OTPublisher
-          properties={{ publishVideo, width: 50, height: 50 }}
-          onPublish={this.onPublish}
-          onError={this.onPublishError}
-          eventHandlers={this.publisherEventHandlers}
-        />
-        <OTStreams>
-          <OTSubscriber
-            properties={{ width: 100, height: 100 }}
-            onSubscribe={this.onSubscribe}
-            onError={this.onSubscribeError}
-            eventHandlers={this.subscriberEventHandlers}
+  render() {
+    const { apiKey, sessionId, token } = this.props.credentials;
+    const { error, connection, publishVideo } = this.state;
+    return (
+      <div>
+        <div id="sessionStatus">Session Status: {connection}</div>
+        {error ? (
+          <div className="error">
+            <strong>Error:</strong> {error}
+          </div>
+        ) : null}
+        <OTSession
+          apiKey={apiKey}
+          sessionId={sessionId}
+          token={token}
+          onError={this.onSessionError}
+          eventHandlers={this.sessionEventHandlers}
+        >
+          <button id="videoButton" onClick={this.toggleVideo}>
+            {publishVideo ? "Disable" : "Enable"} Video
+          </button>
+          <OTPublisher
+            properties={{ publishVideo, width: 50, height: 50 }}
+            onPublish={this.onPublish}
+            onError={this.onPublishError}
+            eventHandlers={this.publisherEventHandlers}
           />
-        </OTStreams>
-      </OTSession>
-    </div>
-  );
+          <OTStreams>
+            <OTSubscriber
+              properties={{ width: 100, height: 100 }}
+              onSubscribe={this.onSubscribe}
+              onError={this.onSubscribeError}
+              eventHandlers={this.subscriberEventHandlers}
+            />
+          </OTStreams>
+        </OTSession>
+      </div>
+    );
+  }
 }

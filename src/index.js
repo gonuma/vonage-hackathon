@@ -1,10 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import "@opentok/client";
+
 import App from "./App";
 import { store } from "./app/store";
 import { Provider } from "react-redux";
 // import * as serviceWorker from './serviceWorker';
-import "@opentok/client";
 import { SERVER_BASE_URL, API_KEY, SESSION_ID, TOKEN } from "./config";
 
 function renderApp(credentials) {
