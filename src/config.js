@@ -1,0 +1,8 @@
+const SERVER_BASE_URL = "http://localhost:9000";
+
+const API_KEY = "47334051";
+const SESSION_ID =
+  "1_MX40NzMzNDA1MX5-MTYzMTYwMTIwNDg0MH5aaEU1c0xzNXVCZ0NzNHpveHZwTkVsLzB-UH4";
+const TOKEN = "d6fcda5a18db297683efeede09611be0e6e6e3e0";
+
+export { SERVER_BASE_URL, API_KEY, SESSION_ID, TOKEN };
