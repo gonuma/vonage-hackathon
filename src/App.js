@@ -15,7 +15,9 @@ function App(props) {
   return (
     <div className="App">
       <Workspace />
-      <Video credentials={credentials} />
+      <div className="videoContainer">
+        <Video credentials={credentials} />
+      </div>
     </div>
   );
 }
