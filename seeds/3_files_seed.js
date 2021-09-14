@@ -6,10 +6,12 @@ exports.seed = function (knex) {
       // Inserts seed entries
       return knex("files").insert([
         {
+          id: 1,
           srcstring: "1jg8FyX7Kz-J-K2OJ9c8fXcfMAhJ6xaEnjs_fWQ8HhO8",
           workspaceId: 1,
         },
         {
+          id: 2,
           srcstring: "1TFHuNuRoDBOgONjvKp0G3z-zLoJjPwn9P9HGskLxsRU",
           workspaceId: 1,
         },
