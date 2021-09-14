@@ -14,6 +14,7 @@ exports.up = function(knex) {
         
         knex.schema.createTable("files", (table) => {
             table.increments("id", { primaryKey: true });
+            table.string("name").notNullable();
             table.string("srcstring").notNullable();
             table.integer("workspaceId").references("workspaces.id").onDelete("CASCADE");
           }),
