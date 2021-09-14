@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Counter } from "./features/counter/Counter";
 import Video from "./features/video/Video";
@@ -10,6 +11,7 @@ function App() {
       <Video />
     </div>
   );
+
 }
 
 export default App;
