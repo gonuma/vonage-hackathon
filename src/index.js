@@ -6,7 +6,7 @@ import App from "./App";
 import { store } from "./app/store";
 import { Provider } from "react-redux";
 // import * as serviceWorker from './serviceWorker';
-import { SERVER_BASE_URL, API_KEY, SESSION_ID, TOKEN } from "./config";
+import { SERVER_BASE_URL, API_KEY, SESSION_ID, TOKEN, SECRET } from "./config";
 
 function renderApp(credentials) {
   ReactDOM.render(
@@ -24,6 +24,7 @@ if (API_KEY && TOKEN && SESSION_ID) {
     apiKey: API_KEY,
     sessionId: SESSION_ID,
     token: TOKEN,
+    secret: SECRET,
   });
 } else {
   fetch(SERVER_BASE_URL + "/session")

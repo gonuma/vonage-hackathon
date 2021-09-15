@@ -78,6 +78,7 @@ export default class App extends React.Component {
   render() {
     const { apiKey, sessionId, token } = this.props.credentials;
     const { error, connection, publishVideo } = this.state;
+
     return (
       <div>
         {/* <div id="sessionStatus">Session Status: {connection}</div>
@@ -93,6 +94,7 @@ export default class App extends React.Component {
           onError={this.onSessionError}
           eventHandlers={this.sessionEventHandlers}
         >
+          {console.log(sessionId)}
           <button id="videoButton" onClick={this.toggleVideo}>
             {publishVideo ? "Disable" : "Enable"} Video
           </button>
