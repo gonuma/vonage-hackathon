@@ -64,9 +64,8 @@ export default function SessionControl(props) {
             },
           }}
         >
-          {/* <button onClick={(e) => (window.location.href = `/room/${room.id}`)}> */}
-          Join Room
-          {/* </button> */}
+          <button className="joinRoomButton">Join Room</button>
+          <br />
         </Link>
       );
     });
@@ -78,15 +77,10 @@ export default function SessionControl(props) {
 
   return (
     <div>
-      <button
-        onClick={() => {
-          generateId();
-          // console.log(rooms);
-        }}
-      >
-        Generate ID
+      <button className="makeRoomButton" onClick={() => generateId()}>
+        Make Room
       </button>
-      {roomListUpdater()}
+      <div>{roomListUpdater()}</div>
     </div>
   );
 }

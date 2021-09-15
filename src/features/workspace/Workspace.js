@@ -9,8 +9,8 @@ const useStyles = makeStyles((theme) => ({
     height: "99vh",
   },
   doc: {
-    width: "66vw",
-    height: "100%",
+    width: "100%",
+    height: "99.5vh",
   },
 }));
 
