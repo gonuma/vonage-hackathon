@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import Video from "./features/video/Video";
-import NewId from "./features/ID_Generator/NewId";
 import { Workspace } from "./features/workspace/Workspace";
+import Landing from "./features/Landing/Landing";
 import { fetchAllFiles } from "./slices/filesSlice";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./app.css";
 
 function App(props) {
@@ -15,13 +15,23 @@ function App(props) {
   }, []);
 
   return (
-    <div className="App">
-      <Workspace />
-      <div className="videoContainer">
-        <NewId credentials={credentials} />
-        <Video credentials={credentials} />
+    <Router>
+      <div className="App">
+        <Switch>
+          <Route
+            path="/"
+            exact
+            render={() => <Landing credentials={credentials} />}
+          />
+          <Route
+            path="/workspace"
+            exact
+            render={() => <Workspace credentials={credentials} />}
+          />
+          <Route path="/workspace/:sessionId" />
+        </Switch>
       </div>
-    </div>
+    </Router>
   );
 }
 

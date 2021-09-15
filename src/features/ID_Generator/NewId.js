@@ -19,6 +19,7 @@ export default function NewId(props) {
     <div>
       <button
         onClick={() => {
+          console.log(credentials);
           vonageVideo.createSession((err, session) => {
             // console.log(session.sessionId);
             // console.log(workspace[0].workspaceId);

@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { OTSession, OTPublisher, OTStreams, OTSubscriber } from "opentok-react";
 
-export default class App extends React.Component {
+export default class Video extends React.Component {
   constructor(props) {
     super(props);
 

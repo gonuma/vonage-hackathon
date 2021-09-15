@@ -6,15 +6,18 @@ import App from "./App";
 import { store } from "./app/store";
 import { Provider } from "react-redux";
 // import * as serviceWorker from './serviceWorker';
+import { BrowserRouter } from "react-router-dom";
 import { SERVER_BASE_URL, API_KEY, SESSION_ID, TOKEN, SECRET } from "./config";
 
 function renderApp(credentials) {
   ReactDOM.render(
-    <React.StrictMode>
-      <Provider store={store}>
-        <App credentials={credentials} />
-      </Provider>
-    </React.StrictMode>,
+    <BrowserRouter>
+      <React.StrictMode>
+        <Provider store={store}>
+          <App credentials={credentials} />
+        </Provider>
+      </React.StrictMode>
+    </BrowserRouter>,
     document.getElementById("root")
   );
 }
