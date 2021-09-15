@@ -1,4 +1,3 @@
-
 exports.up = function(knex) {
     return Promise.all([
         knex.schema.createTable("users", (table) => {
@@ -10,6 +9,7 @@ exports.up = function(knex) {
             table.increments("id", { primaryKey: true });
             table.string("name").notNullable();
             table.integer("userId").references("users.id").onDelete("CASCADE");
+            table.string("sessionId");
         }),
         
         knex.schema.createTable("files", (table) => {
@@ -23,4 +23,14 @@ exports.up = function(knex) {
 
 exports.down = function(knex) {
 
+    knex.schema.createTable("files", (table) => {
+      table.increments("id", { primaryKey: true });
+      table.string("srcstring").notNullable();
+      table
+        .integer("workspaceId")
+        .references("workspaces.id")
+        .onDelete("CASCADE");
+    })
 };
+
+exports.down = function (knex) {};
