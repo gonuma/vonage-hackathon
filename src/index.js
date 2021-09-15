@@ -22,11 +22,14 @@ function renderApp(credentials) {
   );
 }
 
-if (API_KEY && TOKEN && SESSION_ID) {
+if (
+  API_KEY
+  // && TOKEN && SESSION_ID
+) {
   renderApp({
     apiKey: API_KEY,
-    sessionId: SESSION_ID,
-    token: TOKEN,
+    // sessionId: SESSION_ID,
+    // token: TOKEN,
     secret: SECRET,
   });
 } else {

@@ -37,19 +37,19 @@ export default function SessionControl(props) {
       // console.log(room.token);
       // console.log(room.id);
       return (
-        // <Link
-        //   to={
-        //     `/room/${room}`
-        //     // aboutProps: {
-        //     //   token: room.token,
-        //     //   sessionId: room.id,
-        //     // },
-        //   }
-        // >
-        <button onClick={(e) => (window.location.href = `/room/${room.id}`)}>
+        <Link
+          to={{
+            pathname: `/room`,
+            aboutProps: {
+              token: room.token,
+              sessionId: room.id,
+            },
+          }}
+        >
+          {/* <button onClick={(e) => (window.location.href = `/room/${room.id}`)}> */}
           Join Room
-        </button>
-        // </Link>
+          {/* </button> */}
+        </Link>
       );
     });
   };
