@@ -10,9 +10,6 @@ export default function Room(props) {
   const apiKey = useContext(ApiKeyContext);
   const dynamicSessionId = props.location.aboutProps.sessionId;
   const dynamicToken = props.location.aboutProps.token;
-  // console.log(dynamicSessionId);
-  // console.log(dynamicToken);
-  // console.log(apiKey.apiKey);
   return (
     <div className="roomContainer">
       <WorkspaceControl />

@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
+import { Button, Box, Spacing } from "@material-ui/core";
+
 export default function SessionControl(props) {
   const { credentials } = props;
   const workspace = useSelector((state) => state.files.all);
@@ -64,7 +66,11 @@ export default function SessionControl(props) {
             },
           }}
         >
-          <button className="joinRoomButton">Join Room</button>
+          <Box mb={1 / 5}>
+            <Button variant="contained" disableElevation={true} size="medium">
+              Join Room
+            </Button>
+          </Box>
           <br />
         </Link>
       );
@@ -77,9 +83,16 @@ export default function SessionControl(props) {
 
   return (
     <div>
-      <button className="makeRoomButton" onClick={() => generateId()}>
-        Make Room
-      </button>
+      <Box mb={2}>
+        <Button
+          variant="contained"
+          width={1}
+          size="large"
+          onClick={() => generateId()}
+        >
+          Make Room
+        </Button>
+      </Box>
       <div>{roomListUpdater()}</div>
     </div>
   );
