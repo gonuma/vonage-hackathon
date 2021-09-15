@@ -1,13 +1,15 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Workspace } from "./features/workspace/Workspace";
-import Landing from "./features/Landing/Landing";
+import Landing from "./Landing";
+import Room from "./Room";
 import { fetchAllFiles } from "./slices/filesSlice";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./app.css";
 
 function App(props) {
   const { credentials } = props;
+  // const sessionId = props.location.aboutProps.sessionId;
+  // const token = props.location.aboutProps.token;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -24,11 +26,14 @@ function App(props) {
             render={() => <Landing credentials={credentials} />}
           />
           <Route
-            path="/workspace"
+            path="/room"
             exact
-            render={() => <Workspace credentials={credentials} />}
+            render={() => <Room credentials={credentials} />}
           />
-          <Route path="/workspace/:sessionId" />
+          <Route
+            path="/room/:sessionId"
+            render={() => <Room credentials={credentials} />}
+          />
         </Switch>
       </div>
     </Router>

@@ -15,8 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export function Workspace(props) {
-  const { credentials } = props;
+export function Workspace() {
   const classes = useStyles();
   const files = useSelector((state) => state.files);
 
@@ -28,9 +27,6 @@ export function Workspace(props) {
           className={classes.doc}
         ></iframe>
       ) : null}
-      <div className="videoContainer">
-        <Video credentials={credentials} />
-      </div>
     </div>
   );
 }

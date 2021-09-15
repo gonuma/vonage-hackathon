@@ -1,11 +1,11 @@
 import React from "react";
-import NewId from "../ID_Generator/NewId";
+import SessionControl from "./features/Session_Controller/SessionControl";
 
 export default function Landing(props) {
   const { credentials } = props;
   return (
     <div>
-      <NewId credentials={credentials} />
+      <SessionControl credentials={credentials} />
     </div>
   );
 }
