@@ -8,7 +8,7 @@ import {
     NavBtnLink
 } from './NavbarElements'
 
-const index = () => {
+const Navbar = () => {
     return (
         <>
             <Nav>
@@ -39,4 +39,4 @@ const index = () => {
     )
 }
 
-export default index
+export default Navbar

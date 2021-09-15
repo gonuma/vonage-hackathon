@@ -57,7 +57,7 @@ export const NavMenu = styled.div`
  @media screen and (max-width: 768px){
      display: none;
  }
- `
+ `;
 
 export const NavBtn = styled.nav`
  display: flex;
@@ -67,7 +67,7 @@ export const NavBtn = styled.nav`
  @media screen and (max-width: 768px){
      display; none;
  }
- `
+ `;
 
 export const NavBtnLink = styled(Link)`
  border-radius:4px;
