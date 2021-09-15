@@ -14,9 +14,11 @@ export default function Room(props) {
   // console.log(dynamicToken);
   // console.log(apiKey.apiKey);
   return (
-    <div>
+    <div className="roomContainer">
       <WorkspaceControl />
-      <Workspace />
+      <div className="workspaceContainer">
+        <Workspace />
+      </div>
       <div className="videoContainer">
         <Video
           apiKey={apiKey.apiKey}
