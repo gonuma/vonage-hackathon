@@ -32,6 +32,24 @@ export default function SessionControl(props) {
     });
   };
 
+  const dbScraper = () => {
+    axios.get(`/api/workspaces`).then((res) => {
+      for (const session of res.data) {
+        if (session.sessionId !== null) {
+          rooms.push({
+            token: vonageVideo.generateToken(session.sessionId),
+            id: session.sessionId,
+          });
+        }
+      }
+      setRooms([...rooms]);
+    });
+  };
+
+  useEffect(() => {
+    dbScraper();
+  }, []);
+
   const roomListUpdater = () => {
     return rooms.map((room) => {
       // console.log(room.token);
