@@ -25,10 +25,16 @@ export function Workspace() {
     return null
   } else {
     return (
+      // <div className={classes.workspace}>
+      //   {files.currentGroup.map((file) => (
+      //     <iframe src={file.srcstring} className={classes.doc} style={files.currentFile.id === file.id ? null : {display: "none"} }></iframe>
+      //   ))}
+      // </div>
+
+      // CODE ABOVE HAS ERROR WHEN RENDERING DOCS
+
       <div className={classes.workspace}>
-        {files.currentGroup.map((file) => (
-          <iframe src={`https://docs.google.com/${file.srcstring}`} className={classes.doc} style={files.currentFile.id === file.id ? null : {display: "none"} }></iframe>
-        ))}
+        <iframe className={classes.doc} src={files.currentFile.srcstring}></iframe>
       </div>
     )
   }

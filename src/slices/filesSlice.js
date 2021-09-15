@@ -29,6 +29,15 @@ export const deleteFile = createAsyncThunk(
   }
 )
 
+export const postFile = createAsyncThunk(
+  'files/postFile',
+  async (object) => {
+    console.log("post")
+    const response = await axios.post(`/api/files/?name=${object.name}&srcstring=${object.srcstring}&workspace_id=${object.workspaceId}`) 
+    return response.data
+  }
+)
+
 export const filesSlice = createSlice({
   name: "files",
   initialState: {all: null, currentGroup: null, currentFile: null}, 
@@ -39,6 +48,7 @@ export const filesSlice = createSlice({
     },
     changeFileName: patchFileName(),
     removeFile: deleteFile(),
+    addFile: postFile(),
 
   },
   extraReducers: (builder) => {
@@ -59,7 +69,7 @@ export const filesSlice = createSlice({
   }
 })
 
-export const { getAllFiles, setCurrentFile, removeFile } = filesSlice.actions;
+export const { getAllFiles, setCurrentFile, removeFile, addFile } = filesSlice.actions;
 
 
 export default filesSlice.reducer;

@@ -8,13 +8,13 @@ exports.seed = function (knex) {
         {
           id: 1,
           name: "Test File Please Ignore",
-          srcstring: "presentation/d/1jg8FyX7Kz-J-K2OJ9c8fXcfMAhJ6xaEnjs_fWQ8HhO8",
+          srcstring: "https://docs.google.com/presentation/d/1jg8FyX7Kz-J-K2OJ9c8fXcfMAhJ6xaEnjs_fWQ8HhO8/edit?usp=sharing",
           workspaceId: 1,
         },
         {
           id: 2,
-          name: "What is this I don't even",
-          srcstring: "spreadsheets/d/1TFHuNuRoDBOgONjvKp0G3z-zLoJjPwn9P9HGskLxsRU",
+          name: "Is this a spreadsheet?",
+          srcstring: "https://docs.google.com/spreadsheets/d/1TFHuNuRoDBOgONjvKp0G3z-zLoJjPwn9P9HGskLxsRU/edit?usp=sharing",
           workspaceId: 1,
         },
       ]);

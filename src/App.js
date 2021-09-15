@@ -16,10 +16,8 @@ function App(props) {
 
   return (
     <div className="App">
-      <div style={{display:"flex"}}>
         <WorkspaceControl />
         <Workspace />
-      </div>      
       <div className="videoContainer">
         <Video credentials={credentials} />
       </div>

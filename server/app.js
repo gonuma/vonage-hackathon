@@ -93,8 +93,10 @@ app.post("/api/workspaces/:workspace/:sessionId", async (req, res) => {
   }
 });
 
-app.get("/api/files", async (req, res) => {
+app.post("/api/files", async (req, res) => {
   try {
+    const id = Math.floor(Math.random() * 9999999); // temp fix for increments issue
+    await db.insert({id: id, srcstring: req.query.srcstring, name: req.query.name, workspaceId: req.query.workspace_id}).into("files")
     const files = await db.select().table("files");
     res.json(files);
   } catch (err) {
