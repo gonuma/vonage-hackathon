@@ -49,6 +49,18 @@ export const filesSlice = createSlice({
     changeFileName: patchFileName(),
     removeFile: deleteFile(),
     addFile: postFile(),
+    // addToCurrentGroup: (state, action) => {
+    //   let selected = state.all.find((file) => file.id === action.payload)
+    //   state.currentGroup.push(selected)
+    // },
+    // removeFromCurrentGroup: (state, action) => {
+    //   let index = state.currentGroup.findIndex((file) => file.id === action.payload)
+    //   state.currentGroup.splice(index, 1);
+    // },
+    setCurrentGroup: (state, action) => {
+      state.currentGroup = action.payload.map((fileId) => state.all.find((file) => file.id === fileId))
+    }
+
 
   },
   extraReducers: (builder) => {

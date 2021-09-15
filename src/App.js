@@ -5,6 +5,7 @@ import { Workspace } from "./features/workspace/Workspace";
 import { WorkspaceControl } from "./features/workspaceControl/WorkspaceControl"
 import { fetchAllFiles } from "./slices/filesSlice";
 import "./app.css";
+import { WorkspaceSetup } from "./features/workspaceSetup/WorkspaceSetup";
 
 function App(props) {
   const { credentials } = props;
@@ -16,6 +17,7 @@ function App(props) {
 
   return (
     <div className="App">
+        <WorkspaceSetup />
         <WorkspaceControl />
         <Workspace />
       <div className="videoContainer">
