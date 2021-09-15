@@ -45,6 +45,30 @@ app.get("/api/users", async (req, res) => {
       res.sendStatus(500);
     }
   });
+
+  app.patch("/api/files/:id", async (req, res) => {
+    try {
+      await db.select().table("files").where({id: req.params.id}).update({name: req.query.name})
+      const data = await db.select().table("files")
+      res.json(data)
+      
+    } catch (err) {
+      console.log("Error loading files", err);
+      res.sendStatus(500);
+    }
+  })
+
+  app.delete("/api/files/:id", async (req, res) => {
+    try {
+      await db.select().table("files").where({id: req.params.id}).del()
+      const data = await db.select().table("files")
+      res.json(data)
+      
+    } catch (err) {
+      console.log("Error loading files", err);
+      res.sendStatus(500);
+    }
+  })
   
 
 
