@@ -4,6 +4,7 @@ import Video from "./features/video/Video";
 import { Workspace } from "./features/workspace/Workspace";
 import { fetchAllFiles } from "./slices/filesSlice";
 import "./app.css";
+import Navbar from "./components/Navbar";
 
 function App(props) {
   const { credentials } = props;
@@ -15,6 +16,7 @@ function App(props) {
 
   return (
     <div className="App">
+      <Navbar />
       <Workspace />
       <div className="videoContainer">
         <Video credentials={credentials} />
