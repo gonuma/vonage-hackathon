@@ -33,15 +33,9 @@ function App(props) {
               exact
               render={() => <Landing credentials={credentials} />}
             />
-            {/* <Route
-            path="/room"
-            exact
-            render={() => <Room credentials={credentials} />}
-          /> */}
             <Route
               exact
               path="/room"
-              // render={() => <Room credentials={credentials} />}
               component={Room}
               credentials={credentials}
             />

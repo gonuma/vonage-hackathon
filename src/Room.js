@@ -1,5 +1,6 @@
 import React from "react";
 import { Workspace } from "./features/workspace/Workspace";
+import { WorkspaceControl } from "./features/workspaceControl/WorkspaceControl";
 import Video from "./features/video/Video";
 import { useContext } from "react";
 import { ApiKeyContext } from "./App";
@@ -14,6 +15,7 @@ export default function Room(props) {
   // console.log(apiKey.apiKey);
   return (
     <div>
+      <WorkspaceControl />
       <Workspace />
       <div className="videoContainer">
         <Video

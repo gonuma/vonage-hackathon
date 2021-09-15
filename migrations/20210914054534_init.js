@@ -15,6 +15,7 @@ exports.up = function (knex) {
     knex.schema.createTable("files", (table) => {
       table.increments("id", { primaryKey: true });
       table.string("srcstring").notNullable();
+      table.string("name").notNullable();
       table
         .integer("workspaceId")
         .references("workspaces.id")
