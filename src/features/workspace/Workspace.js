@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+
 import Video from "../video/Video";
 import { useSelector, useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
@@ -6,11 +7,11 @@ import { yellow } from "@material-ui/core/colors";
 
 const useStyles = makeStyles((theme) => ({
   workspace: {
-    height: "99vh",
+    height: "80vh",
   },
   doc: {
     width: "100%",
-    height: "99.5vh",
+    height: "100%",
   },
 }));
 

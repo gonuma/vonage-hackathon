@@ -13,6 +13,7 @@ import "./app.css";
 import MenuAppBar from "./components/Navbar";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 
+
 export const ApiKeyContext = React.createContext();
 
 function App(props) {
@@ -26,7 +27,6 @@ function App(props) {
   }, []);
 
   return (
-
     <ApiKeyContext.Provider value={credentials}>
       <Router>
         <div className="App">
@@ -51,7 +51,6 @@ function App(props) {
         </div>
       </Router>
     </ApiKeyContext.Provider>
-
   );
 }
 
