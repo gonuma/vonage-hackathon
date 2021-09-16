@@ -9,7 +9,6 @@
 
 .main {
   display: flex;
-
 }
 
 body {
@@ -23,7 +22,7 @@ body {
 }
 
 .landingPage {
-  height: 100vh;
+  height: 93.4vh;
   width: 100vw;
   display: flex;
   background-color: lightgray;
@@ -63,7 +62,6 @@ body {
 .workspaceContainer {
   width: 72vw;
   background-color: lightgreen;
-
 }
 
 .videoContainer {

@@ -6,6 +6,9 @@ import axios from "axios";
 
 import { Button, Box, Spacing } from "@material-ui/core";
 
+import theme from "../../materialUI/theme";
+import { ThemeProvider } from "@material-ui/core";
+
 export default function SessionControl(props) {
   const { credentials } = props;
   const workspace = useSelector((state) => state.files.all);
@@ -67,7 +70,12 @@ export default function SessionControl(props) {
           }}
         >
           <Box mb={1 / 5}>
-            <Button variant="contained" disableElevation={true} size="medium">
+            <Button
+              color="secondary"
+              variant="contained"
+              disableElevation={true}
+              size="medium"
+            >
               Join Room
             </Button>
           </Box>
@@ -82,9 +90,10 @@ export default function SessionControl(props) {
   }, [rooms]);
 
   return (
-    <div>
+    <ThemeProvider theme={theme}>
       <Box mb={2}>
         <Button
+          color="primary"
           variant="contained"
           width={1}
           size="large"
@@ -93,7 +102,7 @@ export default function SessionControl(props) {
           Make Room
         </Button>
       </Box>
-      <div>{roomListUpdater()}</div>
-    </div>
+      <Box style={{ overflowY: "auto" }}>{roomListUpdater()}</Box>
+    </ThemeProvider>
   );
 }
