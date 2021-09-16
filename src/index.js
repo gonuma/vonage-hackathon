@@ -6,24 +6,31 @@ import App from "./App";
 import { store } from "./app/store";
 import { Provider } from "react-redux";
 // import * as serviceWorker from './serviceWorker';
-import { SERVER_BASE_URL, API_KEY, SESSION_ID, TOKEN } from "./config";
+import { BrowserRouter } from "react-router-dom";
+import { SERVER_BASE_URL, API_KEY, SESSION_ID, TOKEN, SECRET } from "./config";
 
 function renderApp(credentials) {
   ReactDOM.render(
-    <React.StrictMode>
-      <Provider store={store}>
-        <App credentials={credentials} />
-      </Provider>
-    </React.StrictMode>,
+    <BrowserRouter>
+      <React.StrictMode>
+        <Provider store={store}>
+          <App credentials={credentials} />
+        </Provider>
+      </React.StrictMode>
+    </BrowserRouter>,
     document.getElementById("root")
   );
 }
 
-if (API_KEY && TOKEN && SESSION_ID) {
+if (
+  API_KEY
+  // && TOKEN && SESSION_ID
+) {
   renderApp({
     apiKey: API_KEY,
-    sessionId: SESSION_ID,
-    token: TOKEN,
+    // sessionId: SESSION_ID,
+    // token: TOKEN,
+    secret: SECRET,
   });
 } else {
   fetch(SERVER_BASE_URL + "/session")
