@@ -10,6 +10,8 @@ import {
   useParams,
 } from "react-router-dom";
 import "./app.css";
+import Navbar from "./components/Navbar";
+import { BrowserRouter as Router } from 'react-router-dom'
 
 export const ApiKeyContext = React.createContext();
 
@@ -24,6 +26,7 @@ function App(props) {
   }, []);
 
   return (
+
     <ApiKeyContext.Provider value={credentials}>
       <Router>
         <div className="App">
@@ -43,6 +46,7 @@ function App(props) {
         </div>
       </Router>
     </ApiKeyContext.Provider>
+
   );
 }
 
