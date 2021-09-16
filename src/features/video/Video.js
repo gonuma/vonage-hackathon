@@ -2,6 +2,8 @@ import React from "react";
 import { useState } from "react";
 import { OTSession, OTPublisher, OTStreams, OTSubscriber } from "opentok-react";
 
+import { Grid, Box } from "@material-ui/core";
+
 export default class Video extends React.Component {
   constructor(props) {
     super(props);
@@ -82,7 +84,7 @@ export default class Video extends React.Component {
     const { error, connection, publishVideo } = this.state;
 
     return (
-      <div>
+      <>
         {/* <div id="sessionStatus">Session Status: {connection}</div>
         {error ? (
           <div className="error">
@@ -96,30 +98,44 @@ export default class Video extends React.Component {
           onError={this.onSessionError}
           eventHandlers={this.sessionEventHandlers}
         >
-          {console.log(apiKey)}
-          {console.log(sessionId)}
-          {console.log(token)}
-          {/* {console.log(this.props)} */}
-          {/* {console.log(sessionId)} */}
-          <button id="videoButton" onClick={this.toggleVideo}>
-            {publishVideo ? "Disable" : "Enable"} Video
-          </button>
-          <OTPublisher
-            properties={{ publishVideo, width: 150, height: 150 }}
-            onPublish={this.onPublish}
-            onError={this.onPublishError}
-            eventHandlers={this.publisherEventHandlers}
-          />
-          <OTStreams>
-            <OTSubscriber
-              properties={{ width: 150, height: 150 }}
-              onSubscribe={this.onSubscribe}
-              onError={this.onSubscribeError}
-              eventHandlers={this.subscriberEventHandlers}
-            />
-          </OTStreams>
+          <Box
+            component="div"
+            maxHeight="85vh"
+            overflow="auto"
+            className="vidContainer"
+          >
+            <Grid
+              container
+              justifyContent="space-evenly"
+              alignContent="center"
+              direction="column"
+              spacing={1}
+            >
+              <Grid item>
+                <button id="videoButton" onClick={this.toggleVideo}>
+                  {publishVideo ? "Disable" : "Enable"} Video
+                </button>
+                <OTPublisher
+                  properties={{ publishVideo, height: "14vh", width: "11vw" }}
+                  onPublish={this.onPublish}
+                  onError={this.onPublishError}
+                  eventHandlers={this.publisherEventHandlers}
+                />
+              </Grid>
+              <Grid item>
+                <OTStreams>
+                  <OTSubscriber
+                    properties={{ height: "14vh", width: "11vw" }}
+                    onSubscribe={this.onSubscribe}
+                    onError={this.onSubscribeError}
+                    eventHandlers={this.subscriberEventHandlers}
+                  />
+                </OTStreams>
+              </Grid>
+            </Grid>
+          </Box>
         </OTSession>
-      </div>
+      </>
     );
   }
 }
