@@ -1,14 +1,23 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import Video from "./features/video/Video";
-import { Workspace } from "./features/workspace/Workspace";
+import Landing from "./Landing";
+import Room from "./Room";
 import { fetchAllFiles } from "./slices/filesSlice";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  useParams,
+} from "react-router-dom";
 import "./app.css";
-// uncomment out this to use schedule component
-// import Schedule from "./features/schedule/Schedule";
+import Navbar from "./components/Navbar";
+
+export const ApiKeyContext = React.createContext();
 
 function App(props) {
   const { credentials } = props;
+  // const sessionId = props.location.aboutProps.sessionId;
+  // const token = props.location.aboutProps.token;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -16,14 +25,25 @@ function App(props) {
   }, []);
 
   return (
-    <div className="App">
-      {/* // uncomment out this to use schedule component  */}
-      {/* <Schedule /> */}
-      <Workspace />
-      <div className="videoContainer">
-        <Video credentials={credentials} />
-      </div>
-    </div>
+    <ApiKeyContext.Provider value={credentials}>
+      <Router>
+        <div className="App">
+          <Switch>
+            <Route
+              path="/"
+              exact
+              render={() => <Landing credentials={credentials} />}
+            />
+            <Route
+              exact
+              path="/room"
+              component={Room}
+              credentials={credentials}
+            />
+          </Switch>
+        </div>
+      </Router>
+    </ApiKeyContext.Provider>
   );
 }
 
