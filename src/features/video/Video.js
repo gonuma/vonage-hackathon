@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { OTSession, OTPublisher, OTStreams, OTSubscriber } from "opentok-react";
 
-export default class App extends React.Component {
+export default class Video extends React.Component {
   constructor(props) {
     super(props);
 
@@ -76,15 +76,18 @@ export default class App extends React.Component {
   };
 
   render() {
-    const { apiKey, sessionId, token } = this.props.credentials;
+    const sessionId = this.props.sessionId;
+    const token = this.props.token;
+    const apiKey = this.props.apiKey;
     const { error, connection, publishVideo } = this.state;
+
     return (
       <div>
         {/* <div id="sessionStatus">Session Status: {connection}</div>
         {error ? (
           <div className="error">
-            <strong>Error:</strong> {error}
-          </div> */}
+          <strong>Error:</strong> {error}
+        </div> */}
         {/* ) : null} */}
         <OTSession
           apiKey={apiKey}
@@ -93,6 +96,11 @@ export default class App extends React.Component {
           onError={this.onSessionError}
           eventHandlers={this.sessionEventHandlers}
         >
+          {console.log(apiKey)}
+          {console.log(sessionId)}
+          {console.log(token)}
+          {/* {console.log(this.props)} */}
+          {/* {console.log(sessionId)} */}
           <button id="videoButton" onClick={this.toggleVideo}>
             {publishVideo ? "Disable" : "Enable"} Video
           </button>

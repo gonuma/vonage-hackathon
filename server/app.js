@@ -15,15 +15,14 @@ app.use(
 app.use(express.json());
 
 app.get("/api/users", async (req, res) => {
-    try {
-      const users = await db.select().table("users");
-      res.json(users);
-    } catch (err) {
-      console.log("Error loading users", err);
-      res.sendStatus(500);
-    }
-  });
-  
+  try {
+    const users = await db.select().table("users");
+    res.json(users);
+  } catch (err) {
+    console.log("Error loading users", err);
+    res.sendStatus(500);
+  }
+});
 
 app.get("/api/workspaces", async (req, res) => {
   try {
@@ -34,7 +33,6 @@ app.get("/api/workspaces", async (req, res) => {
     res.sendStatus(500);
   }
 });
-  
 
 app.get("/api/files", async (req, res) => {
   try {
@@ -48,27 +46,29 @@ app.get("/api/files", async (req, res) => {
 
 app.patch("/api/files/:id", async (req, res) => {
   try {
-    await db.select().table("files").where({id: req.params.id}).update({name: req.query.name})
-    const data = await db.select().table("files")
-    res.json(data)
-    
+    await db
+      .select()
+      .table("files")
+      .where({ id: req.params.id })
+      .update({ name: req.query.name });
+    const data = await db.select().table("files");
+    res.json(data);
   } catch (err) {
     console.log("Error loading files", err);
     res.sendStatus(500);
   }
-})
+});
 
 app.delete("/api/files/:id", async (req, res) => {
   try {
-    await db.select().table("files").where({id: req.params.id}).del()
-    const data = await db.select().table("files")
-    res.json(data)
-    
+    await db.select().table("files").where({ id: req.params.id }).del();
+    const data = await db.select().table("files");
+    res.json(data);
   } catch (err) {
     console.log("Error loading files", err);
     res.sendStatus(500);
   }
-})
+});
 
 app.get("/api/workspaces", async (req, res) => {
   try {
@@ -96,7 +96,14 @@ app.post("/api/workspaces/:workspace/:sessionId", async (req, res) => {
 app.post("/api/files", async (req, res) => {
   try {
     const id = Math.floor(Math.random() * 9999999); // temp fix for increments issue
-    await db.insert({id: id, srcstring: req.query.srcstring, name: req.query.name, workspaceId: req.query.workspace_id}).into("files")
+    await db
+      .insert({
+        id: id,
+        srcstring: req.query.srcstring,
+        name: req.query.name,
+        workspaceId: req.query.workspace_id,
+      })
+      .into("files");
     const files = await db.select().table("files");
     res.json(files);
   } catch (err) {
