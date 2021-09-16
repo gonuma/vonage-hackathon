@@ -1,28 +1,25 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { makeStyles } from '@material-ui/core/styles';
-import { yellow } from '@material-ui/core/colors';
-
+import React, { useEffect, useState } from "react";
+import Video from "../video/Video";
+import { useSelector, useDispatch } from "react-redux";
+import { makeStyles } from "@material-ui/core/styles";
+import { yellow } from "@material-ui/core/colors";
 
 const useStyles = makeStyles((theme) => ({
   workspace: {
-    width:"60%",
-    height:"40rem",
-    margin: "2rem",
-
+    height: "99vh",
   },
   doc: {
-    width:"100%",
-    height:"100%"
-  }
+    width: "100%",
+    height: "99.5vh",
+  },
 }));
 
 export function Workspace() {
   const classes = useStyles();
-  const files = useSelector((state) => state.files)
-  
+  const files = useSelector((state) => state.files);
+
   if (!files.currentGroup) {
-    return null
+    return null;
   } else {
     return (
       // <div className={classes.workspace}>
@@ -34,10 +31,11 @@ export function Workspace() {
       // CODE ABOVE HAS ERROR WHEN RENDERING DOCS
 
       <div className={classes.workspace}>
-        <iframe className={classes.doc} src={files.currentFile.srcstring}></iframe>
+        <iframe
+          className={classes.doc}
+          src={files.currentFile.srcstring}
+        ></iframe>
       </div>
-    )
+    );
   }
-  
-  
 }
