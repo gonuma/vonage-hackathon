@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
+
+import Video from "../video/Video";
 import { useSelector, useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import { yellow } from "@material-ui/core/colors";
 
 const useStyles = makeStyles((theme) => ({
   workspace: {
-    width: "60%",
-    height: "40rem",
+    height: "80vh",
   },
   doc: {
     width: "100%",
@@ -18,14 +19,24 @@ export function Workspace() {
   const classes = useStyles();
   const files = useSelector((state) => state.files);
 
-  return (
-    <div className={classes.workspace}>
-      {files.currentSelected ? (
+  if (!files.currentGroup) {
+    return null;
+  } else {
+    return (
+      // <div className={classes.workspace}>
+      //   {files.currentGroup.map((file) => (
+      //     <iframe src={file.srcstring} className={classes.doc} style={files.currentFile.id === file.id ? null : {display: "none"} }></iframe>
+      //   ))}
+      // </div>
+
+      // CODE ABOVE HAS ERROR WHEN RENDERING DOCS
+
+      <div className={classes.workspace}>
         <iframe
-          src={`https://docs.google.com/document/d/1NhNv4DdTXERbkZfJJQUvFxcGYD62diFyuBfh1JDOLC4/edit?usp=sharing`}
           className={classes.doc}
+          src={files.currentFile.srcstring}
         ></iframe>
-      ) : null}
-    </div>
-  );
+      </div>
+    );
+  }
 }
