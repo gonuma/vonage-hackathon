@@ -5,24 +5,28 @@ import Video from "./features/video/Video";
 import { useContext } from "react";
 import { ApiKeyContext } from "./App";
 
+import { Grid } from "@material-ui/core";
+
 export default function Room(props) {
   const { credentials } = props;
   const apiKey = useContext(ApiKeyContext);
   const dynamicSessionId = props.location.aboutProps.sessionId;
   const dynamicToken = props.location.aboutProps.token;
   return (
-    <div className="roomContainer">
-      <WorkspaceControl />
-      <div className="workspaceContainer">
+    <Grid container>
+      <Grid item xs={2}>
+        <WorkspaceControl />
+      </Grid>
+      <Grid item xs={8}>
         <Workspace />
-      </div>
-      <div className="videoContainer">
+      </Grid>
+      <Grid item xs={2}>
         <Video
           apiKey={apiKey.apiKey}
           sessionId={dynamicSessionId}
           token={dynamicToken}
         />
-      </div>
-    </div>
+      </Grid>
+    </Grid>
   );
 }
