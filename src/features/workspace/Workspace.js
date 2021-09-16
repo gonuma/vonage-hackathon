@@ -7,7 +7,7 @@ import { yellow } from "@material-ui/core/colors";
 
 const useStyles = makeStyles((theme) => ({
   workspace: {
-    height: "80vh",
+    height: "79.5vh",
   },
   doc: {
     width: "100%",

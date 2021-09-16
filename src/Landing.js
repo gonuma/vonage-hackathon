@@ -1,6 +1,5 @@
 import React from "react";
 import SessionControl from "./features/Session_Controller/SessionControl";
-import MenuAppBar from "./components/Navbar";
 
 import { Grid, Box } from "@material-ui/core";
 import theme from "./materialUI/theme";
@@ -11,8 +10,7 @@ export default function Landing(props) {
   return (
     <ThemeProvider theme={theme}>
       <Grid container>
-        {/* <div className="landingPage"> */}
-        <Grid item xs={10}></Grid>
+        {/* <div className="landingPage"> */}a<Grid item xs={10}></Grid>
         {/* <div className="prepArea">Bam</div> */}
         <Grid
           item
@@ -27,7 +25,7 @@ export default function Landing(props) {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              bgcolor: "primary.main",
+              bgcolor: "primary.dark",
             }}
           >
             {/* <div className="roomList"> */}

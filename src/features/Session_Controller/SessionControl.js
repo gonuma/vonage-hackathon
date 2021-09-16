@@ -91,7 +91,7 @@ export default function SessionControl(props) {
 
   return (
     <ThemeProvider theme={theme}>
-      <Box mb={2}>
+      <Box mt={1} mb={2}>
         <Button
           color="primary"
           variant="contained"

@@ -13,6 +13,8 @@ import "./app.css";
 import MenuAppBar from "./components/Navbar";
 
 import { Grid } from "@material-ui/core";
+import theme from "./materialUI/theme";
+import { ThemeProvider } from "@material-ui/core";
 
 export const ApiKeyContext = React.createContext();
 
