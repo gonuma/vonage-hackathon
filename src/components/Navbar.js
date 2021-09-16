@@ -9,6 +9,10 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import theme from '../theme';
+import { ThemeProvider } from "@material-ui/core";
+
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -39,42 +43,45 @@ export default function MenuAppBar() {
     };
 
     return (
-        <div className={classes.root}>
+        <ThemeProvider theme={theme}>
+            <div className={classes.root}>
 
-            <AppBar position="static">
-                <Toolbar>
+                <AppBar position="static">
+                    <Toolbar >
 
-                    <Typography variant="h6" className={classes.title}>
-                        App title
-                    </Typography>
+                        <Typography variant="h6" className={classes.title}>
+                            App title
+                        </Typography>
 
-                    <div>
+                        <div>
 
-                        <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={handleMenu}>
-                            <MenuIcon />
-                        </IconButton>
-                        <Menu
-                            id="menu-appbar"
-                            anchorEl={anchorEl}
-                            anchorOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            open={open}
-                            onClose={handleClose}
-                        >
-                            <MenuItem onClick={handleClose}>Logout</MenuItem>
-                            <MenuItem onClick={handleClose}>Profile</MenuItem>
-                        </Menu>
-                    </div>
+                            <IconButton edge="start" className={classes.menuButton} color="secondary" aria-label="menu" onClick={handleMenu}>
+                                <MenuIcon />
+                            </IconButton>
 
-                </Toolbar>
-            </AppBar>
-        </div>
+                            <Menu
+                                id="menu-appbar"
+                                anchorEl={anchorEl}
+                                anchorOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                keepMounted
+                                transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                open={open}
+                                onClose={handleClose}
+                            >
+                                <MenuItem onClick={handleClose}>Logout</MenuItem>
+                                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                            </Menu>
+                        </div>
+
+                    </Toolbar>
+                </AppBar>
+            </div>
+        </ThemeProvider >
     );
 }

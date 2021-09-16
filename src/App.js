@@ -11,6 +11,7 @@ import {
 } from "react-router-dom";
 import "./app.css";
 import MenuAppBar from "./components/Navbar";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 
 export const ApiKeyContext = React.createContext();
 
