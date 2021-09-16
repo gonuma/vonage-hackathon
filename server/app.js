@@ -112,6 +112,16 @@ app.post("/api/files", async (req, res) => {
   }
 });
 
+app.get("/api/users_in_workspaces", async (req, res) => {
+  try {
+    const users_in_workspaces = await db.select().table("users_in_workspaces");
+    res.json(users_in_workspaces);
+  } catch (err) {
+    console.log("Error loading users", err);
+    res.sendStatus(500);
+  }
+})
+
 // Serve static assets
 app.use(express.static(path.resolve(__dirname, "..", "build")));
 

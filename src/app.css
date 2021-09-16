@@ -1,10 +1,21 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Sora&display=swap");
+
+* {
+  font-family: "Sora", sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.main {
+  display: flex;
+}
 body {
   margin: 0;
 }
 
-/* .header {
-  background-color: lightcoral;
-} */
+
 
 .App {
   display: flex;
@@ -53,6 +64,7 @@ body {
 .workspaceContainer {
   width: 72vw;
   background-color: lightgreen;
+
 }
 
 .videoContainer {

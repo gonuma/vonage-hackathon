@@ -8,8 +8,19 @@ exports.up = function (knex) {
     knex.schema.createTable("workspaces", (table) => {
       table.increments("id", { primaryKey: true });
       table.string("name").notNullable();
-      table.integer("userId").references("users.id").onDelete("CASCADE");
       table.string("sessionId");
+    }),
+
+    knex.schema.createTable("users_in_workspaces", (table) => {
+      table.increments("id", { primaryKey: true });
+      table.integer("userId", { deferrable: "deferred" }).unsigned();
+      table.integer("workspaceId", { deferrable: "deferred" }).unsigned();
+
+      table.foreign("userId").references("users.id").onDelete("CASCADE");
+      table
+        .foreign("workspaceId")
+        .references("workspaces.id")
+        .onDelete("CASCADE");
     }),
 
     knex.schema.createTable("files", (table) => {

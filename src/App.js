@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Landing from "./Landing";
 import Room from "./Room";
-import { fetchAllFiles } from "./slices/filesSlice";
+import { fetchFiles } from "./slices/userSlice";
 import {
   BrowserRouter as Router,
   Switch,
@@ -10,8 +10,9 @@ import {
   useParams,
 } from "react-router-dom";
 import "./app.css";
-import { WorkspaceSetup } from "./features/workspaceSetup/WorkspaceSetup";
-import { fetchWorkspaces, fetchFiles } from "./slices/userSlice";
+import Navbar from "./components/Navbar";
+import { fetchWorkspaces } from "./slices/userSlice";
+import { setUser } from "./slices/userSlice"
 
 export const ApiKeyContext = React.createContext();
 
@@ -23,18 +24,21 @@ function App(props) {
   const user = useSelector((state) => state.user)
 
   useEffect(() => {
+    dispatch(setUser(1)) // TEMP
     dispatch(fetchWorkspaces())
     dispatch(fetchFiles())
   }, []);
 
-  // useEffect(() => {
-    
-  // }, [user.workspaces]);
+  const clickHandler = () => {
+    console.log(user)
+  }
 
   return (
+
     <ApiKeyContext.Provider value={credentials}>
       <Router>
         <div className="App">
+          <button onClick={(e)=>clickHandler()}>Test</button>
           <Switch>
             <Route
               path="/"
@@ -51,6 +55,7 @@ function App(props) {
         </div>
       </Router>
     </ApiKeyContext.Provider>
+
   );
 }
 
