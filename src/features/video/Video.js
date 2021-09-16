@@ -3,7 +3,6 @@ import { useState } from "react";
 import { OTSession, OTPublisher, OTStreams, OTSubscriber } from "opentok-react";
 
 import { Grid, Box } from "@material-ui/core";
-import { display } from "@material-ui/system";
 
 export default class Video extends React.Component {
   constructor(props) {
@@ -99,7 +98,12 @@ export default class Video extends React.Component {
           onError={this.onSessionError}
           eventHandlers={this.sessionEventHandlers}
         >
-          <Box component="div" maxHeight="100vh">
+          <Box
+            component="div"
+            maxHeight="85vh"
+            overflow="auto"
+            className="vidContainer"
+          >
             <Grid
               container
               justifyContent="space-evenly"
@@ -107,15 +111,12 @@ export default class Video extends React.Component {
               direction="column"
               spacing={1}
             >
-              {/* {console.log(apiKey)}
-          {console.log(sessionId)}
-        {console.log(token)} */}
               <Grid item>
                 <button id="videoButton" onClick={this.toggleVideo}>
                   {publishVideo ? "Disable" : "Enable"} Video
                 </button>
                 <OTPublisher
-                  properties={{ publishVideo, height: 150, width: 200 }}
+                  properties={{ publishVideo, height: "14vh", width: "11vw" }}
                   onPublish={this.onPublish}
                   onError={this.onPublishError}
                   eventHandlers={this.publisherEventHandlers}
@@ -124,7 +125,7 @@ export default class Video extends React.Component {
               <Grid item>
                 <OTStreams>
                   <OTSubscriber
-                    properties={{ height: 150, width: 200 }}
+                    properties={{ height: "14vh", width: "11vw" }}
                     onSubscribe={this.onSubscribe}
                     onError={this.onSubscribeError}
                     eventHandlers={this.subscriberEventHandlers}
