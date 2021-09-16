@@ -99,12 +99,13 @@ export default class Video extends React.Component {
           onError={this.onSessionError}
           eventHandlers={this.sessionEventHandlers}
         >
-          <Box component="div" maxHeight="100%" overflow="auto">
+          <Box component="div" maxHeight="100vh">
             <Grid
               container
               justifyContent="space-evenly"
+              alignContent="center"
               direction="column"
-              spacing={2}
+              spacing={1}
             >
               {/* {console.log(apiKey)}
           {console.log(sessionId)}
@@ -114,7 +115,7 @@ export default class Video extends React.Component {
                   {publishVideo ? "Disable" : "Enable"} Video
                 </button>
                 <OTPublisher
-                  properties={{ publishVideo }}
+                  properties={{ publishVideo, height: 150, width: 200 }}
                   onPublish={this.onPublish}
                   onError={this.onPublishError}
                   eventHandlers={this.publisherEventHandlers}
@@ -123,7 +124,7 @@ export default class Video extends React.Component {
               <Grid item>
                 <OTStreams>
                   <OTSubscriber
-                    properties={{}}
+                    properties={{ height: 150, width: 200 }}
                     onSubscribe={this.onSubscribe}
                     onError={this.onSubscribeError}
                     eventHandlers={this.subscriberEventHandlers}

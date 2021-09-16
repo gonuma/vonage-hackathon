@@ -14,10 +14,9 @@ export default function Room(props) {
   const dynamicToken = props.location.aboutProps.token;
   return (
     <Grid container>
-      <Grid item xs={2}>
-        <WorkspaceControl />
-      </Grid>
-      <Grid item xs={8}>
+      {/* <Grid item xs={2}>
+      </Grid> */}
+      <Grid item xs={10}>
         <Workspace />
       </Grid>
       <Grid item xs={2}>
@@ -26,6 +25,9 @@ export default function Room(props) {
           sessionId={dynamicSessionId}
           token={dynamicToken}
         />
+      </Grid>
+      <Grid item xs={10}>
+        <WorkspaceControl />
       </Grid>
     </Grid>
   );
