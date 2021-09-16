@@ -4,7 +4,7 @@ import Video from "./features/video/Video";
 import { Workspace } from "./features/workspace/Workspace";
 import { fetchAllFiles } from "./slices/filesSlice";
 import "./app.css";
-import Navbar from "./components/Navbar/index";
+import Navbar from "./components/Navbar";
 import { BrowserRouter as Router } from 'react-router-dom'
 
 function App(props) {
@@ -17,12 +17,17 @@ function App(props) {
 
   return (
     <div className="App">
-      <Router>
-        <Navbar />
-      </Router>
-      <Workspace />
-      <div className="videoContainer">
-        <Video credentials={credentials} />
+      <header>
+        <Router>
+          <Navbar />
+        </Router>
+      </header>
+      <div className="main">
+
+        <Workspace />
+        <div className="videoContainer">
+          <Video credentials={credentials} />
+        </div>
       </div>
     </div>
   );
