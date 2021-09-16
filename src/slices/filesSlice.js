@@ -83,5 +83,6 @@ export const filesSlice = createSlice({
 
 export const { getAllFiles, setCurrentFile, removeFile, addFile } = filesSlice.actions;
 
+export const selectCurrentGroup = (state) => state.files.currentGroup;
 
 export default filesSlice.reducer;

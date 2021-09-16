@@ -20,14 +20,15 @@ const useStyles = makeStyles((theme) => ({
 export function WorkspaceSetup() {
   const classes = useStyles();
   const files = useSelector((state) => state.files)
+  const [room, setRoom] = useState(null)
 
   
-  const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
-  };
+  // const handleChange = (event) => {
+  //   setState({ ...state, [event.target.name]: event.target.checked });
+  // };
 
-  const { gilad, jason, antoine } = state;
-  const error = [gilad, jason, antoine].filter((v) => v).length !== 2;
+  // const { gilad, jason, antoine } = state;
+  // const error = [gilad, jason, antoine].filter((v) => v).length !== 2;
 
   /*
 1. CHOOSE ROOM TO EDIT
@@ -38,27 +39,36 @@ export function WorkspaceSetup() {
 - Update the database
   */
 
-  
-  return (
-    <div className={classes.workspaceSetup}>
+  if (!room) {
+    return (
       <div>
-        <h4>Files</h4> 
-        <FormControl required error={error} component="fieldset" className={classes.formControl}>
-          <FormLabel component="legend">Pick two</FormLabel>
-          <FormGroup>
-            {files.all.map((file) => (
-              <FormControlLabel
-                control={<Checkbox checked={gilad} onChange={handleChange} name="gilad" />}
-                label={file.name}
-              />
-            ))}
-            
-          </FormGroup>
-          <FormHelperText>You can display an error</FormHelperText>
-        </FormControl>
+
       </div>
-    </div>
-  )
+    )
+
+  } else {
+    return (
+      <div className={classes.workspaceSetup}>
+        {/* <div>
+          <h4>Files</h4> 
+          <FormControl required error={error} component="fieldset" className={classes.formControl}>
+            <FormLabel component="legend">Pick two</FormLabel>
+            <FormGroup>
+              {files.all.map((file) => (
+                <FormControlLabel
+                  control={<Checkbox checked={files.all.find((element) => fi)} onChange={handleChange} name="gilad" />}
+                  label={file.name}
+                />
+              ))}
+              
+            </FormGroup>
+            <FormHelperText>You can display an error</FormHelperText>
+          </FormControl>
+        </div> */}
+      </div>
+    )
+  }
+  
       
     
   
