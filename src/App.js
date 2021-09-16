@@ -10,7 +10,8 @@ import {
   useParams,
 } from "react-router-dom";
 import "./app.css";
-import Navbar from "./components/Navbar";
+import MenuAppBar from "./components/Navbar";
+
 
 export const ApiKeyContext = React.createContext();
 
@@ -28,6 +29,11 @@ function App(props) {
     <ApiKeyContext.Provider value={credentials}>
       <Router>
         <div className="App">
+          <header>
+
+            <MenuAppBar />
+
+          </header>
           <Switch>
             <Route
               path="/"

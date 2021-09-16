@@ -9,6 +9,7 @@
 
 .main {
   display: flex;
+
 }
 
 body {
@@ -62,6 +63,7 @@ body {
 .workspaceContainer {
   width: 72vw;
   background-color: lightgreen;
+
 }
 
 .videoContainer {
