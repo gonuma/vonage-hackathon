@@ -11,8 +11,9 @@ import {
 } from "react-router-dom";
 import "./app.css";
 import Navbar from "./components/Navbar";
-import { fetchWorkspaces } from "./slices/userSlice";
-import { setUser } from "./slices/userSlice"
+import { fetchWorkspaces, fetchAllUsers, setUser } from "./slices/userSlice";
+import { fetchUsersInWorkspaces } from "./slices/workspacesSlice";
+import { fetchAllFiles } from "./slices/filesSlice";
 
 export const ApiKeyContext = React.createContext();
 
@@ -24,9 +25,12 @@ function App(props) {
   const user = useSelector((state) => state.user)
 
   useEffect(() => {
+    dispatch(fetchAllFiles())
+    dispatch(fetchAllUsers())
     dispatch(setUser(1)) // TEMP
     dispatch(fetchWorkspaces())
     dispatch(fetchFiles())
+    dispatch(fetchUsersInWorkspaces())
   }, []);
 
   const clickHandler = () => {

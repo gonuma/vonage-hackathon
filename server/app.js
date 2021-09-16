@@ -36,8 +36,29 @@ app.get("/api/workspaces", async (req, res) => {
 
 app.get("/api/files", async (req, res) => {
   try {
-    const files = await db.select().table("files");
-    res.json(files);
+    if (req.query.workspace_id) {
+      const files = await db.select().table("files").where("workspaceId", "=", req.query.workspace_id);
+      res.json(files);
+    } else {
+      const files = await db.select().table("files");
+      res.json(files);
+    }
+
+  } catch (err) {
+    console.log("Error loading files", err);
+    res.sendStatus(500);
+  }
+});
+
+app.patch("/api/workspaces/:id", async (req, res) => {
+  try {
+    await db
+      .select()
+      .table("workspaces")
+      .where({ id: req.params.id })
+      .update({ name: req.query.name });
+    const data = await db.select().table("workspaces");
+    res.json(data);
   } catch (err) {
     console.log("Error loading files", err);
     res.sendStatus(500);
@@ -80,6 +101,25 @@ app.get("/api/workspaces", async (req, res) => {
   }
 });
 
+app.post("/api/workspaces", async (req, res) => {
+  try {
+    const id = Math.floor(Math.random() * 9999999); // temp fix for increments issue
+    await db
+      .insert({
+        id: id,
+        name: "Untitled Workspace",
+      })
+      .into("workspaces");
+    const workspaces = await db.select().table("workspaces");
+    const [insertedWorkspace] = await db.select().table("workspaces").where("id", "=", id);
+    res.json({workspaces, insertedWorkspace});
+  } catch (err) {
+    console.log("Error loading files", err);
+    res.sendStatus(500);
+  }
+})
+
+
 app.post("/api/workspaces/:workspace/:sessionId", async (req, res) => {
   console.log(req.params);
   try {
@@ -95,6 +135,7 @@ app.post("/api/workspaces/:workspace/:sessionId", async (req, res) => {
 
 app.post("/api/files", async (req, res) => {
   try {
+    console.log(req.query)
     const id = Math.floor(Math.random() * 9999999); // temp fix for increments issue
     await db
       .insert({
@@ -121,6 +162,35 @@ app.get("/api/users_in_workspaces", async (req, res) => {
     res.sendStatus(500);
   }
 })
+app.post("/api/users_in_workspaces", async (req, res) => {
+  try {
+    console.log(req.query.user_id)
+    const id = Math.floor(Math.random() * 9999999); // temp fix for increments issue
+    await db
+    .insert({
+      id: id,
+      userId: req.query.user_id,
+      workspaceId: req.query.room_id,
+    })
+    .into("users_in_workspaces");
+    const users_in_workspaces = await db.select().table("users_in_workspaces");
+    res.json(users_in_workspaces);
+  } catch (err) {
+    console.log("Error loading users", err);
+    res.sendStatus(500);
+  }
+})
+app.delete("/api/users_in_workspaces", async (req, res) => {
+  try {
+    await db.select().table("users_in_workspaces").where({ userId: req.query.user_id, workspaceId: req.query.room_id}).del()
+    const users_in_workspaces = await db.select().table("users_in_workspaces")
+    res.json(users_in_workspaces);
+  } catch (err) {
+    console.log("Error loading users", err);
+    res.sendStatus(500);
+  }
+})
+
 
 // Serve static assets
 app.use(express.static(path.resolve(__dirname, "..", "build")));

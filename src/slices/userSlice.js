@@ -3,7 +3,9 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import _ from "lodash";
 import { useDispatch } from "react-redux";
-import { selectCurrentGroup } from "./filesSlice";
+import { selectCurrentGroup, postFile, deleteFile, } from "./filesSlice";
+import { postWorkspace, patchWorkspaceName } from "./workspacesSlice";
+
 
 export const fetchWorkspaces = createAsyncThunk(
   'user/fetchWorkspaces',
@@ -15,6 +17,7 @@ export const fetchWorkspaces = createAsyncThunk(
     return {workspaces: workspaces.data, users_in_workspaces: users_in_workspaces.data, files: files.data}
   }
 )
+
 export const fetchFiles = createAsyncThunk(
   'user/fetchFiles',
   async (object) => {
@@ -24,11 +27,21 @@ export const fetchFiles = createAsyncThunk(
   }
 )
 
+export const fetchAllUsers = createAsyncThunk(
+  'user/fetchAllUsers',
+  async (object) => {
+    console.log("getting files")
+    const response = await axios.get(`/api/users/`)
+    return response.data
+  }
+)
+
 
 export const userSlice = createSlice({
   name: "user",
-  initialState: {selectedUser: 1, workspaces: null, files: null}, 
+  initialState: {all: null, selectedUser: 1, workspaces: null, files: null}, 
   reducers: {
+    getAllUsers: fetchAllUsers(),
     getWorkspaces: fetchWorkspaces(),
     getFiles: fetchFiles(),
     setUser: (state, action) => {
@@ -59,6 +72,29 @@ export const userSlice = createSlice({
         // state.workspaces = action.payload.filter((workspace) => {
         //   return workspace.userId === state.selectedUser
         // })
+      })
+      
+      .addCase(postFile.fulfilled, (state, action) => {
+        state.files = action.payload.filter((file) => {
+          for (const workspace of state.workspaces) {
+            if (workspace.id === file.workspaceId) return true
+          }
+          return false
+        })
+      })
+      .addCase(deleteFile.fulfilled, (state, action) => {
+        state.files = action.payload.filter((file) => {
+          for (const workspace of state.workspaces) {
+            if (workspace.id === file.workspaceId) return true
+          }
+          return false
+        })
+      })
+      .addCase(fetchAllUsers.fulfilled, (state, action) => {
+        state.all = action.payload
+      })
+      .addCase(postWorkspace.fulfilled, (state, action) => {
+        state.workspaces.push(action.payload.workspaces.insertedWorkspace)
       })
       // .addCase(fetchFiles.fulfilled, (state, action) => {
       //   state.files = action.payload.filter((file) => {
