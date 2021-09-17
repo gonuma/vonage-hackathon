@@ -14,12 +14,12 @@
 body {
   margin: 0;
 }
-
+/* 
 .App {
   display: flex;
   /* background-color: lightpink; */
-  height: 100vh;
-}
+/* height: 100vh;
+} */
 
 .landingPage {
   height: 93.4vh;
@@ -61,7 +61,7 @@ body {
 
 .workspaceContainer {
   width: 72vw;
-  /* background-color: lightgreen; */
+
 }
 
 .videoContainer {

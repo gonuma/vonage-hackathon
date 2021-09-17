@@ -15,9 +15,11 @@ import { fetchWorkspaces, fetchAllUsers, setUser } from "./slices/userSlice";
 import { fetchUsersInWorkspaces } from "./slices/workspacesSlice";
 import { fetchAllFiles } from "./slices/filesSlice";
 
+
 import { Grid } from "@material-ui/core";
 import theme from "./materialUI/theme";
 import { ThemeProvider } from "@material-ui/core";
+
 
 export const ApiKeyContext = React.createContext();
 
@@ -46,6 +48,7 @@ function App(props) {
   }
 
   return (
+
     <ApiKeyContext.Provider value={credentials}>
       <Router>
         <Grid container>
@@ -72,6 +75,7 @@ function App(props) {
         </Grid>
       </Router>
     </ApiKeyContext.Provider>
+
   );
 }
 
