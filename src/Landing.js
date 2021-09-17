@@ -9,11 +9,11 @@ import { ThemeProvider } from "@material-ui/core";
 export default function Landing(props) {
   const { credentials } = props;
   return (
-
     <ThemeProvider theme={theme}>
       <Grid container>
-        {/* <div className="landingPage"> */}a<Grid item xs={10}></Grid>
-        {/* <div className="prepArea">Bam</div> */}
+        <Grid item xs={10}>
+          <WorkspaceSetup />
+        </Grid>
         <Grid
           item
           // xs={2}
@@ -38,6 +38,5 @@ export default function Landing(props) {
         </Grid>
       </Grid>
     </ThemeProvider>
-
   );
 }
