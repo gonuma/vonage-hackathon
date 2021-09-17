@@ -29,10 +29,11 @@ export const deleteWorkspace = createAsyncThunk(
 
 export const postWorkspace = createAsyncThunk(
   'workspaces/postWorkspace',
-  async (userId) => {
+  async (object) => {
     console.log("post")
-    const workspaces = await axios.post(`/api/workspaces/`) 
-    const users_in_workspaces = await axios.post(`/api/users_in_workspaces/?user_id=${userId}&room_id=${workspaces.data.insertedWorkspace.id}`) 
+    console.log(object)
+    const workspaces = await axios.post(`/api/workspaces/?session_id=${object.session.sessionId}&token=${object.session.token}`) 
+    const users_in_workspaces = await axios.post(`/api/users_in_workspaces/?user_id=${object.user}&room_id=${workspaces.data.insertedWorkspace.id}`) 
     return {workspaces: workspaces.data, users_in_workspaces: users_in_workspaces.data}
   }
 )

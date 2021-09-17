@@ -56,6 +56,9 @@ export const filesSlice = createSlice({
     setCurrentFile: (state, action) => {
       state.currentFile = action.payload
     },
+    setCurrentGroup: (state, action) => {
+      state.currentGroup = action.payload
+    },
     changeFileName: patchFileName(),
     removeFile: deleteFile(),
     addFile: postFile(),
@@ -70,8 +73,6 @@ export const filesSlice = createSlice({
       })
       .addCase(fetchAllFiles.fulfilled, (state, action) => {
         state.all = action.payload;
-        state.currentGroup = action.payload; // TEMPORARY FOR TESTING
-        state.currentFile = action.payload[0] // TEMPORARY FOR TESTING
       })
       .addCase(patchFileName.fulfilled, (state, action) => {
         state.all = action.payload;
@@ -84,7 +85,7 @@ export const filesSlice = createSlice({
   }
 })
 
-export const { getAllFiles, setCurrentFile, removeFile, addFile } = filesSlice.actions;
+export const { getAllFiles, setCurrentFile, removeFile, addFile, setCurrentGroup } = filesSlice.actions;
 
 export const selectCurrentGroup = (state) => state.files.currentGroup;
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -9,9 +9,15 @@ import { Button, Box, Spacing } from "@material-ui/core";
 import theme from "../../materialUI/theme";
 import { ThemeProvider } from "@material-ui/core";
 
+import { setCurrentFile, setCurrentGroup } from "../../slices/filesSlice";
+
 export default function SessionControl(props) {
   const { credentials } = props;
   const workspace = useSelector((state) => state.files.all);
+  
+  const user = useSelector((state) => state.user);
+  const files = useSelector((state) => state.files)
+  const dispatch = useDispatch();
 
   const [rooms, setRooms] = useState([]);
 
@@ -55,34 +61,50 @@ export default function SessionControl(props) {
     dbScraper();
   }, []);
 
+  const setFiles = (workspace) => {
+    const filtered = files.all.filter((file) => file.workspaceId === workspace.id)
+    console.log("hello")
+    console.log(filtered)
+    dispatch(setCurrentGroup(filtered))
+    if (filtered.length === 0) dispatch(setCurrentFile(null))
+    else dispatch(setCurrentFile(filtered[0]))
+  }
+
   const roomListUpdater = () => {
-    return rooms.map((room) => {
-      // console.log(room.token);
-      // console.log(room.id);
-      return (
-        <Link
-          to={{
-            pathname: `/room`,
-            aboutProps: {
-              token: room.token,
-              sessionId: room.id,
-            },
-          }}
-        >
-          <Box mb={1 / 5}>
-            <Button
-              color="secondary"
-              variant="contained"
-              disableElevation={true}
-              size="medium"
-            >
-              Join Room
-            </Button>
-          </Box>
-          <br />
-        </Link>
-      );
-    });
+    if (!user.workspaces) {
+      return null
+    } else {
+      return user.workspaces.map((workspace) => {
+        // console.log(room.token);
+        // console.log(room.id);
+        return (
+          <Link
+            to={{
+              pathname: `/room`,
+              aboutProps: {
+                token: workspace.token,
+                sessionId: workspace.sessionId,
+              },
+            }}
+          >
+            <h4>{workspace.name}</h4>
+            <Box mb={1 / 5}>
+              <Button
+                color="secondary"
+                variant="contained"
+                disableElevation={true}
+                size="medium"
+                onClick={(e) => setFiles(workspace)}
+              >
+                Join Room
+              </Button>
+            </Box>
+            <br />
+          </Link>
+        );
+      });
+    }
+    
   };
 
   useEffect(() => {

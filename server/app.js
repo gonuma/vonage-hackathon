@@ -103,11 +103,15 @@ app.get("/api/workspaces", async (req, res) => {
 
 app.post("/api/workspaces", async (req, res) => {
   try {
+    console.log(req.query.user)
+    console.log("HELLO")
     const id = Math.floor(Math.random() * 9999999); // temp fix for increments issue
     await db
       .insert({
         id: id,
         name: "Untitled Workspace",
+        sessionId: req.query.session_id,
+        token: req.query.token
       })
       .into("workspaces");
     const workspaces = await db.select().table("workspaces");

@@ -17,7 +17,7 @@ export function Workspace() {
   const classes = useStyles();
   const files = useSelector((state) => state.files);
 
-  if (!files.currentGroup) {
+  if (!files.currentFile) {
     return null;
   } else {
     return (
