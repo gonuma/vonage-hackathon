@@ -11,8 +11,8 @@ export default function Landing(props) {
   return (
     <ThemeProvider theme={theme}>
       <Grid container>
-        <Grid item xs={10}>
-          <WorkspaceSetup credentials={credentials}/>
+        <Grid item xs={12}>
+          <WorkspaceSetup credentials={credentials} />
         </Grid>
         <Grid
           item
@@ -22,8 +22,8 @@ export default function Landing(props) {
         >
           <Box
             sx={{
-              width: "15vw",
-              height: "80vh",
+              width: "100vw",
+              height: "55.2vh",
               display: "flex",
               flexDirection: "column",
               alignItems: "center",

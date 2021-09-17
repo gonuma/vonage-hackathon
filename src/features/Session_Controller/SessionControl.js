@@ -14,9 +14,9 @@ import { setCurrentFile, setCurrentGroup } from "../../slices/filesSlice";
 export default function SessionControl(props) {
   const { credentials } = props;
   const workspace = useSelector((state) => state.files.all);
-  
+
   const user = useSelector((state) => state.user);
-  const files = useSelector((state) => state.files)
+  const files = useSelector((state) => state.files);
   const dispatch = useDispatch();
 
   const [rooms, setRooms] = useState([]);
@@ -62,17 +62,19 @@ export default function SessionControl(props) {
   }, []);
 
   const setFiles = (workspace) => {
-    const filtered = files.all.filter((file) => file.workspaceId === workspace.id)
-    console.log("hello")
-    console.log(filtered)
-    dispatch(setCurrentGroup(filtered))
-    if (filtered.length === 0) dispatch(setCurrentFile(null))
-    else dispatch(setCurrentFile(filtered[0]))
-  }
+    const filtered = files.all.filter(
+      (file) => file.workspaceId === workspace.id
+    );
+    console.log("hello");
+    console.log(filtered);
+    dispatch(setCurrentGroup(filtered));
+    if (filtered.length === 0) dispatch(setCurrentFile(null));
+    else dispatch(setCurrentFile(filtered[0]));
+  };
 
   const roomListUpdater = () => {
     if (!user.workspaces) {
-      return null
+      return null;
     } else {
       return user.workspaces.map((workspace) => {
         // console.log(room.token);
@@ -104,7 +106,6 @@ export default function SessionControl(props) {
         );
       });
     }
-    
   };
 
   useEffect(() => {
@@ -113,7 +114,7 @@ export default function SessionControl(props) {
 
   return (
     <ThemeProvider theme={theme}>
-      <Box mt={1} mb={2}>
+      {/* <Box mt={1} mb={2}>
         <Button
           color="primary"
           variant="contained"
@@ -123,8 +124,13 @@ export default function SessionControl(props) {
         >
           Make Room
         </Button>
+      </Box> */}
+      <Box
+        mt={1}
+        // style={{ overflowY: "auto" }}
+      >
+        {roomListUpdater()}
       </Box>
-      <Box style={{ overflowY: "auto" }}>{roomListUpdater()}</Box>
     </ThemeProvider>
   );
 }
