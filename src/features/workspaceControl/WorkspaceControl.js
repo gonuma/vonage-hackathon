@@ -99,7 +99,7 @@ export function WorkspaceControl() {
   };
 
   return (
-    <div className={classes.control}>
+    <div style={{ borderTop: "1px solid #68939c" }} className={classes.control}>
       <div>
         <AddCircle onClick={(e) => addClickHandler(e)} />
         <Popover
