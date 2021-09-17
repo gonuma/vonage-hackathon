@@ -8,7 +8,8 @@ exports.up = function (knex) {
     knex.schema.createTable("workspaces", (table) => {
       table.increments("id", { primaryKey: true });
       table.string("name").notNullable();
-      table.string("sessionId");
+      table.text("sessionId", ["longtext"]);
+      table.text("token", ["longtext"]);
     }),
 
     knex.schema.createTable("users_in_workspaces", (table) => {
@@ -31,7 +32,7 @@ exports.up = function (knex) {
         .integer("workspaceId")
         .references("workspaces.id")
         .onDelete("CASCADE");
-    }),
+    }),   
   ]);
 };
 

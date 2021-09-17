@@ -12,7 +12,7 @@ export default function Landing(props) {
     <ThemeProvider theme={theme}>
       <Grid container>
         <Grid item xs={10}>
-          <WorkspaceSetup />
+          <WorkspaceSetup credentials={credentials}/>
         </Grid>
         <Grid
           item
