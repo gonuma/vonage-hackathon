@@ -1,10 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import _ from "lodash";
-import { useDispatch } from "react-redux";
-import { selectCurrentGroup, postFile, deleteFile, } from "./filesSlice";
-import { postWorkspace, deleteWorkspace, patchWorkspaceName } from "./workspacesSlice";
+import { postFile, deleteFile, } from "./filesSlice";
+import { postWorkspace, deleteWorkspace } from "./workspacesSlice";
 
 
 export const fetchWorkspaces = createAsyncThunk(

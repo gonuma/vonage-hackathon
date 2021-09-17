@@ -23,6 +23,8 @@ function App(props) {
   // const token = props.location.aboutProps.token;
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user)
+  const workspaces = useSelector((state) => state.workspaces)
+  const files = useSelector((state) => state.files)
 
   useEffect(() => {
     dispatch(fetchAllFiles())
@@ -35,6 +37,8 @@ function App(props) {
 
   const clickHandler = () => {
     console.log(user)
+    console.log(workspaces)
+    console.log(files)
   }
 
   return (

@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import AddCircle from '@material-ui/icons/AddCircle'
 import RemoveCircle from '@material-ui/icons/RemoveCircle'
-import { blueGrey, yellow } from '@material-ui/core/colors';
+import { blueGrey } from '@material-ui/core/colors';
 import { List, ListItem, ListItemText, TextField, Popover, Typography, Button } from '@material-ui/core';
 import { patchFileName, setCurrentFile, deleteFile, postFile } from '../../slices/filesSlice';
 import EditIcon from '@material-ui/icons/Edit';

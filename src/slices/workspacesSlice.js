@@ -22,9 +22,7 @@ export const patchWorkspaceName = createAsyncThunk(
 export const deleteWorkspace = createAsyncThunk(
   'workspaces/deleteWorkspace',
   async (id) => {
-    console.log("delete")
-    console.log(id)
-    const response = await axios.delete(`/api/workspaces/${id}`) 
+    await axios.delete(`/api/workspaces/${id}`) 
     return id
   }
 )
@@ -36,15 +34,6 @@ export const postWorkspace = createAsyncThunk(
     const workspaces = await axios.post(`/api/workspaces/`) 
     const users_in_workspaces = await axios.post(`/api/users_in_workspaces/?user_id=${userId}&room_id=${workspaces.data.insertedWorkspace.id}`) 
     return {workspaces: workspaces.data, users_in_workspaces: users_in_workspaces.data}
-  }
-)
-
-export const postFileToWorkspace = createAsyncThunk(
-  'workspaces/postWorkspace',
-  async (userId) => {
-    console.log("post")
-    const files = await axios.post(`/api/files/`) 
-    return files.data
   }
 )
 
@@ -75,7 +64,7 @@ export const deleteUserFromWorkspace = createAsyncThunk(
 
 export const workspacesSlice = createSlice({
   name: "workspaces",
-  initialState: {all: null, configure: null, selectedFiles: [], selectedUsers: [], users_in_workspaces: null}, 
+  initialState: {all: null, configure: null, users_in_workspaces: null}, 
   reducers: {
     getUsersInWorkspaces: fetchUsersInWorkspaces(),
     getWorkspaces: fetchWorkspaces(),
@@ -85,33 +74,8 @@ export const workspacesSlice = createSlice({
     changeWorkspaceName: patchWorkspaceName(),
     removeWorkspace: deleteWorkspace(),
     addWorkspace: postWorkspace(),
-    setSelectedFiles: (state, action) => {
-      state.selectedFiles = action.payload
-    },
-    addFileToWorkspace: postFileToWorkspace(),
-    removeFileFromWorkspace: (state, action) => {
-      let index = state.selectedFiles.find((file) => file.id === action.payload.id)
-      state.selectedFiles.splice(index, 1)
-    },
     addUserToWorkspace: postUserToWorkspace(),
     removeUserFromWorkspace: deleteUserFromWorkspace(),
-    resetUsersAndFiles: (state, action) => {
-      state.selectedFiles = []
-      state.selectedUsers = []
-    },
-    addToCurrentGroup: (state, action) => {
-      let selected = state.all.find((workspace) => workspace.id === action.payload)
-      state.currentGroup.push(selected)
-    },
-    removeFromCurrentGroup: (state, action) => {
-      let index = state.currentGroup.findIndex((workspace) => workspace.id === action.payload)
-      state.currentGroup.splice(index, 1);
-    },
-    setCurrentGroup: (state, action) => {
-      state.currentGroup = action.payload.map((workspaceId) => state.all.find((workspace) => workspace.id === workspaceId))
-    }
-
-
   },
   extraReducers: (builder) => {
     builder
@@ -137,7 +101,7 @@ export const workspacesSlice = createSlice({
   }
 })
 
-export const { getWorkspaces, setCurrentWorkspace, removeWorkspace, addWorkspace, toggleSelectedFile, setSelectedFiles, addFileToWorkspace, removeFileFromWorkspace, addUserToWorkspace, removeUserFromWorkspace, resetUsersAndFiles } = workspacesSlice.actions;
+export const { getWorkspaces, setCurrentWorkspace, removeWorkspace, addWorkspace, toggleSelectedFile, setSelectedFiles, addFileToWorkspace, addUserToWorkspace, removeUserFromWorkspace } = workspacesSlice.actions;
 
 export const selectCurrentGroup = (state) => state.workspaces.currentGroup;
 

@@ -67,9 +67,6 @@ export const filesSlice = createSlice({
     //   let index = state.currentGroup.findIndex((file) => file.id === action.payload)
     //   state.currentGroup.splice(index, 1);
     // },
-    setCurrentGroup: (state, action) => {
-      state.currentGroup = action.payload.map((fileId) => state.all.find((file) => file.id === fileId))
-    },
     getWorkspaceFiles: fetchWorkspaceFiles(),
 
 

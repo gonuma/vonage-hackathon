@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { List, ListItem, Checkbox, ListItemText, FormControl, FormLabel, FormGroup, FormControlLabel, FormHelperText, Button, Typography, Popover, TextField } from '@material-ui/core';
-import { postWorkspace, toggleSelectedFile, setSelectedFiles, addFileToWorkspace, removeFileFromWorkspace, postUserToWorkspace, deleteUserFromWorkspace, resetUsersAndFiles, patchWorkspaceName, deleteWorkspace } from '../../slices/workspacesSlice';
+import { postWorkspace, postUserToWorkspace, deleteUserFromWorkspace, patchWorkspaceName, deleteWorkspace } from '../../slices/workspacesSlice';
 import { RemoveCircle } from '@material-ui/icons';
 import { postFile, deleteFile } from '../../slices/filesSlice'
 import { fetchWorkspaces } from '../../slices/userSlice';
@@ -26,7 +26,6 @@ export function WorkspaceSetup() {
   const user = useSelector((state) => state.user)
   const workspaces = useSelector((state) => state.workspaces)
   const [room, setRoom] = useState(null)
-  const [currentFiles, setCurrentFiles] = useState(null)
   const dispatch = useDispatch();
   const [workspaceName, setWorkspaceName] = useState(null)
 
@@ -36,20 +35,8 @@ export function WorkspaceSetup() {
   
   const saveButtonHandler = (event) => {
     // setState({ ...state, [event.target.name]: event.target.checked });
-    console.log(user.files)
-    console.log(room.id)
-    console.log(workspaces)
-    dispatch(resetUsersAndFiles())
     setRoom(null)
     dispatch(fetchWorkspaces())
-  };
-
-  const handleFileChange = (e, file) => {
-    if (e.target.checked) {
-      dispatch(addFileToWorkspace(file))
-    } else {
-      dispatch(removeFileFromWorkspace(file))
-    }
   };
 
   const handleUserChange = (e, user) => {
