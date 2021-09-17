@@ -5,19 +5,17 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   workspace: {
-    height: "99vh",
+    height: "80vh",
   },
   doc: {
     width: "100%",
-    height: "99.5vh",
-
+    height: "100%",
   },
 }));
 
 export function Workspace() {
   const classes = useStyles();
   const files = useSelector((state) => state.files);
-
 
   if (!files.currentGroup) {
     return null;
@@ -40,5 +38,4 @@ export function Workspace() {
       </div>
     );
   }
-
 }

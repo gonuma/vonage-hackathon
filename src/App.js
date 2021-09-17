@@ -10,10 +10,11 @@ import {
   useParams,
 } from "react-router-dom";
 import "./app.css";
-import Navbar from "./components/Navbar";
+import MenuAppBar from "./components/Navbar";
 import { fetchWorkspaces, fetchAllUsers, setUser } from "./slices/userSlice";
 import { fetchUsersInWorkspaces } from "./slices/workspacesSlice";
 import { fetchAllFiles } from "./slices/filesSlice";
+
 
 export const ApiKeyContext = React.createContext();
 
@@ -42,11 +43,14 @@ function App(props) {
   }
 
   return (
-
     <ApiKeyContext.Provider value={credentials}>
       <Router>
         <div className="App">
-          <button onClick={(e)=>clickHandler()}>Test</button>
+          <header>
+
+            <MenuAppBar />
+
+          </header>
           <Switch>
             <Route
               path="/"
@@ -63,7 +67,6 @@ function App(props) {
         </div>
       </Router>
     </ApiKeyContext.Provider>
-
   );
 }
 
