@@ -100,7 +100,7 @@ export default class Video extends React.Component {
         >
           <Box
             component="div"
-            maxHeight="85vh"
+            height="93.5vh"
             overflow="auto"
             className="vidContainer"
           >

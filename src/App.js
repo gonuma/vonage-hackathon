@@ -15,6 +15,12 @@ import { fetchWorkspaces, fetchAllUsers, setUser } from "./slices/userSlice";
 import { fetchUsersInWorkspaces } from "./slices/workspacesSlice";
 import { fetchAllFiles } from "./slices/filesSlice";
 
+
+import { Grid } from "@material-ui/core";
+import theme from "./materialUI/theme";
+import { ThemeProvider } from "@material-ui/core";
+
+
 export const ApiKeyContext = React.createContext();
 
 function App(props) {
@@ -45,12 +51,13 @@ function App(props) {
 
     <ApiKeyContext.Provider value={credentials}>
       <Router>
-        <div className="App">
-          <header>
-
+        <Grid container>
+          {/* <div className="App"> */}
+          {/* <header>
+          </header>  */}
+          <Grid item xs={12}>
             <MenuAppBar />
-
-          </header>
+          </Grid>
           <Switch>
             <Route
               path="/"
@@ -64,7 +71,8 @@ function App(props) {
               credentials={credentials}
             />
           </Switch>
-        </div>
+          {/* </div> */}
+        </Grid>
       </Router>
     </ApiKeyContext.Provider>
 

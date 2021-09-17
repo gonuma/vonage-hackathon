@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   workspace: {
-    height: "80vh",
+    height: "79.5vh",
   },
   doc: {
     width: "100%",

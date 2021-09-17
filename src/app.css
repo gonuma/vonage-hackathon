@@ -22,10 +22,10 @@ body {
 } */
 
 .landingPage {
-  height: 100vh;
+  height: 93.4vh;
   width: 100vw;
   display: flex;
-  background-color: lightgray;
+  /* background-color: lightgray; */
 }
 
 .prepArea {
@@ -39,7 +39,7 @@ body {
   text-align: center;
   border-style: solid;
   border-color: lightcoral;
-  background-color: lightblue;
+  /* background-color: lightblue; */
 }
 
 .MuiBox-root-2 {
@@ -56,12 +56,12 @@ body {
   height: 100vh;
   width: 100vw;
   display: flex;
-  background-color: lightgray;
+  /* background-color: lightgray; */
 }
 
 .workspaceContainer {
   width: 72vw;
-  background-color: lightgreen;
+
 }
 
 .videoContainer {
