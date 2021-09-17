@@ -21,11 +21,11 @@ export const patchWorkspaceName = createAsyncThunk(
 
 export const deleteWorkspace = createAsyncThunk(
   'workspaces/deleteWorkspace',
-  async (object) => {
+  async (id) => {
     console.log("delete")
-    console.log(object)
-    const response = await axios.delete(`/api/workspaces/${object.id}`) 
-    return response.data
+    console.log(id)
+    const response = await axios.delete(`/api/workspaces/${id}`) 
+    return id
   }
 )
 
@@ -72,7 +72,6 @@ export const deleteUserFromWorkspace = createAsyncThunk(
     return users_in_workspaces.data
   }
 )
-
 
 export const workspacesSlice = createSlice({
   name: "workspaces",
@@ -123,10 +122,6 @@ export const workspacesSlice = createSlice({
         state.all = action.payload;
       })
       .addCase(patchWorkspaceName.fulfilled, (state, action) => {
-        state.all = action.payload;
-        state.currentGroup = action.payload;
-      })
-      .addCase(deleteWorkspace.fulfilled, (state, action) => {
         state.all = action.payload;
         state.currentGroup = action.payload;
       })

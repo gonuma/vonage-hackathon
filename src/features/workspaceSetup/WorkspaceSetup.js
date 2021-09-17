@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { List, ListItem, Checkbox, ListItemText, FormControl, FormLabel, FormGroup, FormControlLabel, FormHelperText, Button, Typography, Popover, TextField } from '@material-ui/core';
-import { postWorkspace, toggleSelectedFile, setSelectedFiles, addFileToWorkspace, removeFileFromWorkspace, postUserToWorkspace, deleteUserFromWorkspace, resetUsersAndFiles, patchWorkspaceName } from '../../slices/workspacesSlice';
+import { postWorkspace, toggleSelectedFile, setSelectedFiles, addFileToWorkspace, removeFileFromWorkspace, postUserToWorkspace, deleteUserFromWorkspace, resetUsersAndFiles, patchWorkspaceName, deleteWorkspace } from '../../slices/workspacesSlice';
 import { RemoveCircle } from '@material-ui/icons';
 import { postFile, deleteFile } from '../../slices/filesSlice'
 import { fetchWorkspaces } from '../../slices/userSlice';
@@ -126,6 +126,11 @@ const nameChangeHandler = (e, workspace) => {
     setRoom(workspace)
     setWorkspaceName(workspace.name)
   }
+
+  const deleteWorkspaceHandler = (id) => {
+    console.log(id)
+    dispatch(deleteWorkspace(id))
+  }
   
 
   if (user.workspaces && !room) {
@@ -141,7 +146,7 @@ const nameChangeHandler = (e, workspace) => {
                 secondary="time here" 
                 onClick={(e) => roomSelectHandler(workspace)}
               />
-              <RemoveCircle />
+              <RemoveCircle onClick={(e) => deleteWorkspaceHandler(workspace.id)} />
             </ListItem>
           ))}
         </List>

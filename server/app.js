@@ -119,6 +119,16 @@ app.post("/api/workspaces", async (req, res) => {
   }
 })
 
+app.delete("/api/workspaces/:id", async (req, res) => {
+  try {
+    await db.select().table("workspaces").where({ id: req.params.id }).del();
+    const data = await db.select().table("workspaces");
+    res.json(data);
+  } catch (err) {
+    console.log("Error loading files", err);
+    res.sendStatus(500);
+  }
+});
 
 app.post("/api/workspaces/:workspace/:sessionId", async (req, res) => {
   console.log(req.params);

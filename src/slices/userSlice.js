@@ -4,7 +4,7 @@ import axios from "axios";
 import _ from "lodash";
 import { useDispatch } from "react-redux";
 import { selectCurrentGroup, postFile, deleteFile, } from "./filesSlice";
-import { postWorkspace, patchWorkspaceName } from "./workspacesSlice";
+import { postWorkspace, deleteWorkspace, patchWorkspaceName } from "./workspacesSlice";
 
 
 export const fetchWorkspaces = createAsyncThunk(
@@ -96,6 +96,11 @@ export const userSlice = createSlice({
       .addCase(postWorkspace.fulfilled, (state, action) => {
         state.workspaces.push(action.payload.workspaces.insertedWorkspace)
       })
+      .addCase(deleteWorkspace.fulfilled, (state, action) => {
+        const index = state.workspaces.findIndex((workspace) => workspace.id === action.payload)
+        state.workspaces.splice(index, 1)
+      })
+      
       // .addCase(fetchFiles.fulfilled, (state, action) => {
       //   state.files = action.payload.filter((file) => {
       //     for (const workspace of state.workspaces) {
