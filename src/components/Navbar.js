@@ -7,13 +7,11 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 
-
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 
 import theme from "../materialUI/theme";
 import { ThemeProvider } from "@material-ui/core";
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,7 +26,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function MenuAppBar() {
-
   const classes = useStyles();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -45,10 +42,10 @@ export default function MenuAppBar() {
   return (
     <ThemeProvider theme={theme}>
       <div className={classes.root}>
-        <AppBar position="static">
+        <AppBar position="static" color="secondary">
           <Toolbar>
             <Typography variant="h6" className={classes.title}>
-              App title
+              Collabspace
             </Typography>
 
             <div>
@@ -85,5 +82,4 @@ export default function MenuAppBar() {
       </div>
     </ThemeProvider>
   );
-
 }
