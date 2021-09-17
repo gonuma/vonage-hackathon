@@ -85,13 +85,6 @@ export const workspacesSlice = createSlice({
       .addCase(fetchWorkspaces.fulfilled, (state, action) => {
         state.all = action.payload;
       })
-      .addCase(patchWorkspaceName.fulfilled, (state, action) => {
-        state.all = action.payload;
-        state.currentGroup = action.payload;
-      })
-      .addCase(postWorkspace.fulfilled, (state, action) => {
-        console.log(action.payload)
-      })
       .addCase(postUserToWorkspace.fulfilled, (state, action) => {
         state.users_in_workspaces = action.payload
       })
