@@ -33,7 +33,17 @@ export const postFile = createAsyncThunk(
   'files/postFile',
   async (object) => {
     console.log("post")
-    const response = await axios.post(`/api/files/?name=${object.name}&srcstring=${object.srcstring}&workspace_id=${object.workspaceId}`) 
+    console.log(object)
+    const response = await axios.post(`/api/files/?name=${object.name}&workspace_id=${object.workspaceId}&srcstring=${object.srcstring}`) 
+    return response.data
+  }
+)
+
+export const fetchWorkspaceFiles = createAsyncThunk(
+  'files/getWorkspaceFiles',
+  async (workspaceId) => {
+    console.log("getWorkspaceFiles")
+    const response = await axios.get(`/api/files/?workspace_id=${workspaceId}`) 
     return response.data
   }
 )
@@ -49,10 +59,15 @@ export const filesSlice = createSlice({
     changeFileName: patchFileName(),
     removeFile: deleteFile(),
     addFile: postFile(),
+    getWorkspaceFiles: fetchWorkspaceFiles(),
+
 
   },
   extraReducers: (builder) => {
     builder
+      .addCase(fetchWorkspaceFiles.fulfilled, (state, action) => {
+        state.all = action.payload
+      })
       .addCase(fetchAllFiles.fulfilled, (state, action) => {
         state.all = action.payload;
         state.currentGroup = action.payload; // TEMPORARY FOR TESTING
@@ -71,5 +86,6 @@ export const filesSlice = createSlice({
 
 export const { getAllFiles, setCurrentFile, removeFile, addFile } = filesSlice.actions;
 
+export const selectCurrentGroup = (state) => state.files.currentGroup;
 
 export default filesSlice.reducer;

@@ -17,6 +17,18 @@ exports.seed = function (knex) {
           srcstring: "https://docs.google.com/spreadsheets/d/1TFHuNuRoDBOgONjvKp0G3z-zLoJjPwn9P9HGskLxsRU/edit?usp=sharing",
           workspaceId: 1,
         },
+        {
+          id: 3,
+          name: "Doc",
+          srcstring: "https://docs.google.com/spreadsheets/d/1TFHuNuRoDBOgONjvKp0G3z-zLoJjPwn9P9HGskLxsRU/edit?usp=sharing",
+          workspaceId: 2,
+        },
+        {
+          id: 4,
+          name: "Doc",
+          srcstring: "https://docs.google.com/spreadsheets/d/1TFHuNuRoDBOgONjvKp0G3z-zLoJjPwn9P9HGskLxsRU/edit?usp=sharing",
+          workspaceId: 3,
+        },
       ]);
     });
 };

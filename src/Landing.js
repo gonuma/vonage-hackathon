@@ -1,5 +1,6 @@
 import React from "react";
 import SessionControl from "./features/Session_Controller/SessionControl";
+import { WorkspaceSetup } from "./features/workspaceSetup/WorkspaceSetup";
 
 import { Grid, Box } from "@material-ui/core";
 import theme from "./materialUI/theme";
@@ -8,6 +9,7 @@ import { ThemeProvider } from "@material-ui/core";
 export default function Landing(props) {
   const { credentials } = props;
   return (
+
     <ThemeProvider theme={theme}>
       <Grid container>
         {/* <div className="landingPage"> */}a<Grid item xs={10}></Grid>
@@ -36,5 +38,6 @@ export default function Landing(props) {
         </Grid>
       </Grid>
     </ThemeProvider>
+
   );
 }

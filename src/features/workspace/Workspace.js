@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
-import Video from "../video/Video";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
-import { yellow } from "@material-ui/core/colors";
 
 const useStyles = makeStyles((theme) => ({
   workspace: {
@@ -33,6 +31,7 @@ export function Workspace() {
 
       <div className={classes.workspace}>
         <iframe
+          title="workspace"
           className={classes.doc}
           src={files.currentFile.srcstring}
         ></iframe>

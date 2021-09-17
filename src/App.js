@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Landing from "./Landing";
 import Room from "./Room";
-import { fetchAllFiles } from "./slices/filesSlice";
+import { fetchFiles } from "./slices/userSlice";
 import {
   BrowserRouter as Router,
   Switch,
@@ -11,6 +11,9 @@ import {
 } from "react-router-dom";
 import "./app.css";
 import MenuAppBar from "./components/Navbar";
+import { fetchWorkspaces, fetchAllUsers, setUser } from "./slices/userSlice";
+import { fetchUsersInWorkspaces } from "./slices/workspacesSlice";
+import { fetchAllFiles } from "./slices/filesSlice";
 
 import { Grid } from "@material-ui/core";
 import theme from "./materialUI/theme";
@@ -23,10 +26,24 @@ function App(props) {
   // const sessionId = props.location.aboutProps.sessionId;
   // const token = props.location.aboutProps.token;
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user)
+  const workspaces = useSelector((state) => state.workspaces)
+  const files = useSelector((state) => state.files)
 
   useEffect(() => {
-    dispatch(fetchAllFiles());
+    dispatch(fetchAllFiles())
+    dispatch(fetchAllUsers())
+    dispatch(setUser(1)) // TEMP
+    dispatch(fetchWorkspaces())
+    dispatch(fetchFiles())
+    dispatch(fetchUsersInWorkspaces())
   }, []);
+
+  const clickHandler = () => {
+    console.log(user)
+    console.log(workspaces)
+    console.log(files)
+  }
 
   return (
     <ApiKeyContext.Provider value={credentials}>
